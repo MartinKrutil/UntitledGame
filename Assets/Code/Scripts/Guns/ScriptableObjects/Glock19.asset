@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c03552dad37a54441ad55e9f33af6c17, type: 3}
-  m_Name: Pistol
+  m_Name: Glock19
   m_EditorClassIdentifier: 
-  name: Pistol
+  name: Glock19
   damage: 1
   clipSize: 10
   reloadSpeed: 0.25
   shootingSpeed: 0.25
   gunType: 0
-  ammoType: 0
-  firePoint: {fileID: 8853623814105141340, guid: 2a35a7199411ce04fae67a75c1d154ec, type: 3}
-  ammo: {fileID: 6003530329220675945, guid: 0a039568d52f21947871c77859c5fbff, type: 3}
-  sprite: {fileID: 21300000, guid: 25ba78687d3858c4e804dfd7d427f354, type: 3}
+  BulletType: 0
+  bullet: {fileID: 5678757416334655841, guid: 8b67c356203d251428db0576d82489e3, type: 3}

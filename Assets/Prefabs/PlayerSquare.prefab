@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b416055a58cb44bbef89622878c65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  gun: {fileID: 0}
   firePoint: {fileID: 0}
 --- !u!114 &7115808103812437305
 MonoBehaviour:

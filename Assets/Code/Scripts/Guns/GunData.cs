@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon")]
-public class Weapon : ScriptableObject
+[CreateAssetMenu(fileName = "New Gun Data", menuName = "Gun Data")]
+public class GunData : ScriptableObject
 {
     public new string name;
 
@@ -16,9 +16,5 @@ public class Weapon : ScriptableObject
     public GunType gunType;
     public BulletType BulletType;
 
-    public Transform firePoint;
-    public GameObject ammo;
-
-    public Sprite sprite;
-    
+    public GameObject bullet; 
 }

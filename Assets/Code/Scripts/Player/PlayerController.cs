@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false; //Flips sprite on x axis depending on which side the cursor is relative to the sprite
     }
 
+    /// <summary>
+    /// Moves player by changing velocity of his rigidbody
+    /// </summary>
     public void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed;
 
     #endregion Methods

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
-    public Weapon weapon;
+    public Gun gun;
     public Transform firePoint;
 
     private Vector2 mouseScreenPosition;
@@ -23,7 +23,7 @@ public class Shooting : MonoBehaviour
     }
 
     /// <summary>
-    /// Rotates object towards cursor position
+    /// Rotates gun towards cursor position
     /// </summary>
     void FollowCursor()
     {
@@ -42,7 +42,7 @@ public class Shooting : MonoBehaviour
 
     void OnFire()
     {
-        Instantiate(weapon.ammo, firePoint.position, firePoint.rotation);
+        //Instantiate(gun.bullet, firePoint.position, firePoint.rotation);
         Debug.Log("gadzu");
     }
 }
