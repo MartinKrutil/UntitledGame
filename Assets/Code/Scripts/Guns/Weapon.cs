@@ -14,7 +14,7 @@ public class Weapon : ScriptableObject
     public float shootingSpeed; 
 
     public GunType gunType;
-    public AmmoType ammoType;
+    public BulletType BulletType;
 
     public Transform firePoint;
     public GameObject ammo;

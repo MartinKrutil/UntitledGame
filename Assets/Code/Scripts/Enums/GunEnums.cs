@@ -3,7 +3,7 @@ public enum GunType
     SemiAutomatic,
     Automatic
 }
-public enum AmmoType
+public enum BulletType
 {
     Small,
     Big,

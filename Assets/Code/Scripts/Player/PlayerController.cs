@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidBody.velocity = movementInput.normalized * movementSpeed; 
+        Move();
         FollowCursor();
     }
 
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false; //Flips sprite on x axis depending on which side the cursor is relative to the sprite
     }
 
-    public void Move() { }
+    public void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed;
 
     #endregion Methods
 
