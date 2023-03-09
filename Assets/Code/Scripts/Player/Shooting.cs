@@ -5,28 +5,38 @@ using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
-    public Gun gun;
-    public Transform firePoint;
+    #region Properties
+
+    [SerializeField]
+    private Gun gun;
+
+    [SerializeField]
+    private Transform firePoint;
+
+    #endregion Properties
+
+    #region Rotation Fields
 
     private Vector2 mouseScreenPosition;
     private Vector3 mouseWorldPosition;
     private Vector3 targetDirection;
     private float rotationAngle;
 
-    void Start()
-    {
-        
-    }
+    #endregion Rotation Fields
 
-    void FixedUpdate()
+    private void Start() {}
+
+    private void FixedUpdate()
     {
         FollowCursor();
     }
 
+    #region Methods
+
     /// <summary>
     /// Rotates gun towards cursor position
     /// </summary>
-    void FollowCursor()
+    private void FollowCursor()
     {
         mouseScreenPosition = Mouse.current.position.ReadValue(); //Position of cursor on screen
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition); //Converts mouse cursor screen position to world (game) position
@@ -36,19 +46,25 @@ public class Shooting : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationAngle)); //Rotates object on z axis towards the cursor
 
-        Debug.Log(rotationAngle);
-
         //Rotates the object by 180 degrees depending on which side the cursor is relative to the object
         if (rotationAngle < -90 || rotationAngle > 90)
             transform.localRotation = Quaternion.Euler(new Vector3(180, 0, -rotationAngle));
     }
 
-    void OnFire()
+    /// <summary>
+    /// Shoots bullet from fire point by adding force to its rigidbody
+    /// </summary>
+    private void Shoot()
     {
-
-        GameObject bullet = Instantiate(this.gun.gunData.bullet, this.firePoint.position, this.firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(bullet.transform.right * 20f, ForceMode2D.Impulse);
-        //Debug.Log("gadzu");
+        GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * 20f, ForceMode2D.Impulse);
     }
+
+    #endregion Methods
+
+    #region Input
+
+    private void OnFire() => Shoot();
+
+    #endregion Input
 }

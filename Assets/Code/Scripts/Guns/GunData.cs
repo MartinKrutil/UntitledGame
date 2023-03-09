@@ -11,10 +11,10 @@ public class GunData : ScriptableObject
     public int clipSize;
 
     public float reloadSpeed;
-    public float shootingSpeed; 
+    public float shootingSpeed;
 
     public GunType gunType;
     public BulletType BulletType;
 
-    public GameObject bullet; 
+    public GameObject bullet;
 }

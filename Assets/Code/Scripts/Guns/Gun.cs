@@ -6,23 +6,4 @@ public class Gun : MonoBehaviour
 {
     public GunData gunData;
     public Transform firePoint;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void OnFire()
-    {
-        Instantiate(gunData.bullet, firePoint.position, firePoint.rotation);
-        Debug.Log("gadzu");
-    }
-
 }

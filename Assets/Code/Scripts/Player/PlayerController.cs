@@ -9,34 +9,35 @@ public class PlayerController : MonoBehaviour
 {
     #region Properties
 
-    SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private float movementSpeed = 1f;
 
-    Rigidbody2D rigidBody;
+    private SpriteRenderer spriteRenderer;
 
-    Vector2 movementInput;
+    private Rigidbody2D rigidBody;
 
-    public float movementSpeed = 1f;
+    private Vector2 movementInput;
 
     #endregion Properties
+
+    #region Rotation Fields
 
     private Vector2 mouseScreenPosition;
     private Vector3 mouseWorldPosition;
     private Vector3 targetDirection;
     private float rotationAngle;
 
+    #endregion Rotation Fields
 
-    void Start()
+    private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
-    {
+    private void Update() { }
 
-    }
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
         FollowCursor();
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Makes player face the cursor
     /// </summary>
-    void FollowCursor()
+    private void FollowCursor()
     {
         mouseScreenPosition = Mouse.current.position.ReadValue(); //Position of cursor on screen
         mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition); //Converts mouse cursor screen position to world (game) position
@@ -61,13 +62,13 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Moves player by changing velocity of his rigidbody
     /// </summary>
-    public void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed;
+    private void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed;
 
     #endregion Methods
 
     #region Input
 
-    void OnMove(InputValue value) => movementInput = value.Get<Vector2>();
+    private void OnMove(InputValue value) => movementInput = value.Get<Vector2>();
 
     #endregion Input
 
