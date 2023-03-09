@@ -36,6 +36,8 @@ public class Shooting : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationAngle)); //Rotates object on z axis towards the cursor
 
+        Debug.Log(rotationAngle);
+
         //Rotates the object by 180 degrees depending on which side the cursor is relative to the object
         if (rotationAngle < -90 || rotationAngle > 90)
             transform.localRotation = Quaternion.Euler(new Vector3(180, 0, -rotationAngle));

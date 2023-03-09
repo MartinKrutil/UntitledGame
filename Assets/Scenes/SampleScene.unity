@@ -212,6 +212,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1018620136 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9125910127512976252, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+  m_PrefabInstance: {fileID: 8219543874288803054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6006757782807519996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266,6 +271,14 @@ PrefabInstance:
     - target: {fileID: 5678757416334655841, guid: 8b67c356203d251428db0576d82489e3, type: 3}
       propertyPath: m_Name
       value: SmallBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232360692892780232, guid: 8b67c356203d251428db0576d82489e3, type: 3}
+      propertyPath: m_Radius
+      value: 0.21615508
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232360692892780232, guid: 8b67c356203d251428db0576d82489e3, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.0638449
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b67c356203d251428db0576d82489e3, type: 3}
@@ -343,7 +356,7 @@ PrefabInstance:
     - target: {fileID: 1892313792206621453, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: firePoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1018620136}
     - target: {fileID: 4453393602376887751, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: m_Name
       value: PlayerSquare
