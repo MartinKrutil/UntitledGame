@@ -7,11 +7,12 @@ public class GunData : ScriptableObject
 {
     public new string name;
 
-    public int damage;
-    public int clipSize;
-
+    public float damage;
+    
     public float reloadSpeed;
-    public float shootingSpeed;
+    public float fireRate;
+
+    public int clipSize;
 
     public GunType gunType;
     public BulletType BulletType;

@@ -13,6 +13,9 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     private Transform firePoint;
 
+    [SerializeField]
+    private AudioSource fireSFX;
+
     #endregion Properties
 
     #region Rotation Fields
@@ -24,7 +27,7 @@ public class Shooting : MonoBehaviour
 
     #endregion Rotation Fields
 
-    private void Start() {}
+    private void Start() { }
 
     private void FixedUpdate()
     {
@@ -58,6 +61,7 @@ public class Shooting : MonoBehaviour
     {
         GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * 20f, ForceMode2D.Impulse);
+        fireSFX.Play();
     }
 
     #endregion Methods
