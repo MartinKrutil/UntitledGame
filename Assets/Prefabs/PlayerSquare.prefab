@@ -224,8 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b416055a58cb44bbef89622878c65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
-  firePoint: {fileID: 0}
+  gun: {fileID: 3030373907660344026, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
 --- !u!114 &7115808103812437305
 MonoBehaviour:
   m_ObjectHideFlags: 0

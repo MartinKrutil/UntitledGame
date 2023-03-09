@@ -15,6 +15,7 @@ public class Shooting : MonoBehaviour
 
     void Start()
     {
+        
     }
 
     void FixedUpdate()
@@ -42,7 +43,10 @@ public class Shooting : MonoBehaviour
 
     void OnFire()
     {
-        //Instantiate(gun.bullet, firePoint.position, firePoint.rotation);
-        Debug.Log("gadzu");
+
+        GameObject bullet = Instantiate(this.gun.gunData.bullet, this.firePoint.position, this.firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(bullet.transform.right * 20f, ForceMode2D.Impulse);
+        //Debug.Log("gadzu");
     }
 }
