@@ -35,12 +35,14 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update() { }
+    private void Update()
+    {
+        FollowCursor();
+    }
 
     private void FixedUpdate()
     {
         Move();
-        FollowCursor();
     }
 
     #region Methods
@@ -56,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
         rotationAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg; //Angle of rotation required to point object towards the mouse position in degrees
 
-        spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false; //Flips sprite on x axis depending on which side the cursor is relative to the sprite
+        spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false; //Flips sprite on x axis depending on which side the cursor is relative to the sprite      
     }
 
     /// <summary>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Shooting : MonoBehaviour
+public class PlayerShooting : MonoBehaviour
 {
     #region Properties
 
@@ -29,7 +29,7 @@ public class Shooting : MonoBehaviour
 
     private void Start() { }
 
-    private void FixedUpdate()
+    private void Update()
     {
         FollowCursor();
     }
@@ -60,7 +60,7 @@ public class Shooting : MonoBehaviour
     private void Shoot()
     {
         GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * 20f, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 70f;
         fireSFX.Play();
     }
 
