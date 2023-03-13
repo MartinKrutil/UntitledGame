@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     #region Properties
 
     [SerializeField]
-    private float movementSpeed = 1f;
+    private float movementSpeed;
 
     private SpriteRenderer spriteRenderer;
 
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Moves player by changing velocity of his rigidbody
     /// </summary>
-    private void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed;
+    private void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed * Time.deltaTime * 10;
 
     #endregion Methods
 

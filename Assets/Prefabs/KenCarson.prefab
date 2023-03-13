@@ -208,7 +208,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6635604308267728721}
   m_Father: {fileID: 1429072228065705062}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -225,8 +226,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 3030373907660344026, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
-  firePoint: {fileID: 8853623814105141340, guid: 2a35a7199411ce04fae67a75c1d154ec, type: 3}
-  fireSFX: {fileID: 0}
+  firePoint: {fileID: 5810337878841599597}
+  fireSFX: {fileID: 6714913129376942359}
 --- !u!114 &7115808103812437305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,3 +258,75 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1001 &3316841119627959569
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6853848469964090748}
+    m_Modifications:
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.11483863
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219543874772410947, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+      propertyPath: m_Name
+      value: Glock19
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+--- !u!4 &5810337878841599597 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9125910127512976252, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+  m_PrefabInstance: {fileID: 3316841119627959569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6635604308267728721 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+  m_PrefabInstance: {fileID: 3316841119627959569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6714913129376942359 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8302351300885730310, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+  m_PrefabInstance: {fileID: 3316841119627959569}
+  m_PrefabAsset: {fileID: 0}

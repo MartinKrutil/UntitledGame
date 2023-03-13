@@ -14,9 +14,9 @@ public class Bullet : MonoBehaviour
 
     private void Explode()
     {
-        GameObject effect = Instantiate(collisionEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 0.1f);
         Destroy(gameObject);
+        GameObject effect = Instantiate(collisionEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 0.1f);       
     }
 
     private void OnCollisionEnter2D(Collision2D collision) => Explode();

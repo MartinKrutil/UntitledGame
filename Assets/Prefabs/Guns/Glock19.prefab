@@ -132,7 +132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: c5342cd88592e8c42994278bd04189ae, type: 2}
   firePoint: {fileID: 9125910127512976252}
-  fireSFX: {fileID: 8302351300885730310}
 --- !u!82 &8302351300885730310
 AudioSource:
   m_ObjectHideFlags: 0
