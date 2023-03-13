@@ -60,7 +60,7 @@ public class PlayerShooting : MonoBehaviour
     private void Shoot()
     {
         GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 70f;
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 40f;
         fireSFX.Play();
     }
 

@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
         else if (currentWaypoint >= path.vectorPath.Count) return; //if current waypoint is greater than or equal to total amount of waypoint along the path
 
         Vector2 nextWaypointDirection = ((Vector2)path.vectorPath[currentWaypoint] - rigidBody.position).normalized; //normalized vector2 direction from current position to next waypoint
-        Vector2 force = nextWaypointDirection * movementSpeed * Time.deltaTime * 10;
+        Vector2 force = nextWaypointDirection * movementSpeed * Time.fixedDeltaTime;
 
         rigidBody.AddForce(force);
 

@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Moves player by changing velocity of his rigidbody
     /// </summary>
-    private void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed * Time.deltaTime * 10;
+    private void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed * Time.fixedDeltaTime;
 
     #endregion Methods
 

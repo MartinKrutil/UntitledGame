@@ -10,13 +10,13 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    private void Start(){ }
+    private void Start() { }
 
     private void Explode()
-    {
-        Destroy(gameObject);
+    {      
         GameObject effect = Instantiate(collisionEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 0.1f);       
+        Destroy(effect, 0.1f);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision) => Explode();
