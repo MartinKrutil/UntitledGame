@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerShooting : MonoBehaviour
+public class PlayerShootingController : MonoBehaviour
 {
     #region Properties
 
@@ -18,14 +18,14 @@ public class PlayerShooting : MonoBehaviour
 
     #endregion Properties
 
-    #region Rotation Fields
+    #region Rotation
 
     private Vector2 mouseScreenPosition;
     private Vector3 mouseWorldPosition;
     private Vector3 targetDirection;
     private float rotationAngle;
 
-    #endregion Rotation Fields
+    #endregion Rotation
 
     private void Start() { }
 

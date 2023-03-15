@@ -2,42 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using System;
 
-public class Enemy : MonoBehaviour
+public class EnemyPathFindingController : MonoBehaviour
 {
-    [SerializeField]
-    private float movementSpeed = 1000f;
-
     [SerializeField]
     private Transform target;
 
-    private Seeker seeker;
     private Rigidbody2D rigidBody;
 
-    private Path path;
-    private int currentWaypoint = 0;
-
-    private float nextWaypointDistance = 3f;
+    private Path path; 
+    private Seeker seeker;
     
+    private int currentWaypoint = 0;
+    private float nextWaypointDistance = 3f;
 
-    private  void Start()
+    void Start()
     {
+        //target = transform;
         seeker = GetComponent<Seeker>();
         rigidBody = GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("GeneratePath", 0f, 0.25f); //Calls the GeneratePath method on start and then every 0.5 seconds
+        InvokeRepeating("GeneratePath", 0f, 0.25f); //Calls the GeneratePath method on start and then every 0.25 seconds
     }
 
-    private void FixedUpdate()
-    {
-        FollowPath();
-    }
-
-    private void GeneratePath()
-    {
-        seeker.StartPath(rigidBody.position, target.position, OnPathGenerated);
-    }
+    private void GeneratePath() => seeker.StartPath(rigidBody.position, target.position, OnPathGenerated);
 
     private void OnPathGenerated(Path path)
     {
@@ -48,9 +36,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FollowPath()
+    public void CheckTarget()
     {
-        if (path == null) return;     
+        if (target == null)
+            CancelInvoke("GeneratePath");
+    }
+
+    public void FollowPath(float movementSpeed)
+    {
+        if (path == null) return;
 
         else if (currentWaypoint >= path.vectorPath.Count) return; //if current waypoint is greater than or equal to total amount of waypoint along the path
 

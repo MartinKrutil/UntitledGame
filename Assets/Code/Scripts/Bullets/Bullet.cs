@@ -8,6 +8,9 @@ public class Bullet : MonoBehaviour
     private GameObject collisionEffect;
 
     [SerializeField]
+    private int damage;
+
+    [SerializeField]
     private float speed;
 
     private void Start() { }
@@ -19,6 +22,12 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) => Explode();
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {       
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            collision.collider.GetComponent<EnemyHealthController>().TakeDamage(this.damage);
+            Explode();
+        }           
+    } 
 }

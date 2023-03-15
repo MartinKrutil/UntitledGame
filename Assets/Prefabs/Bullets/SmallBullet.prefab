@@ -137,4 +137,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionEffect: {fileID: 4421763146360084537, guid: baa5f31e8147c9c4fa6e478cdc7da735, type: 3}
+  damage: 1
   speed: 0
