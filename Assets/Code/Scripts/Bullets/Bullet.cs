@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject collisionEffect;
+    [SerializeField] private GameObject collisionEffect;
 
-    [SerializeField]
-    private int damage;
+    //[Range(1, 10)] [SerializeField] private float speed;
 
-    [SerializeField]
-    private float speed;
+    [Range(1, 10)][SerializeField] private int damage; 
+    [Range(1, 10)][SerializeField] private float lifeTime;
 
-    private void Start() { }
-
+    private void Start()
+    {
+        Destroy(gameObject, lifeTime);
+    }
+    
     private void Explode()
     {      
         GameObject effect = Instantiate(collisionEffect, transform.position, Quaternion.identity);

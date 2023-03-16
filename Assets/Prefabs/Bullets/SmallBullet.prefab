@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3500995593310054816}
+  - component: {fileID: 8573662764330955128}
   - component: {fileID: 6426966017040191488}
   - component: {fileID: -3970618044059591322}
   - component: {fileID: 7232360692892780232}
-  - component: {fileID: 8573662764330955128}
   m_Layer: 0
   m_Name: SmallBullet
   m_TagString: Bullet
@@ -29,12 +29,28 @@ Transform:
   m_GameObject: {fileID: 5678757416334655841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8573662764330955128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678757416334655841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74b9ba8506f6ebd4c81f2d9335d30a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionEffect: {fileID: 4421763146360084537, guid: baa5f31e8147c9c4fa6e478cdc7da735, type: 3}
+  damage: 1
+  speed: 10
+  lifeTime: 3
 --- !u!212 &6426966017040191488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,18 +140,3 @@ CircleCollider2D:
   m_Offset: {x: 0.050065756, y: 0.0071951896}
   serializedVersion: 2
   m_Radius: 0.065
---- !u!114 &8573662764330955128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5678757416334655841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74b9ba8506f6ebd4c81f2d9335d30a5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionEffect: {fileID: 4421763146360084537, guid: baa5f31e8147c9c4fa6e478cdc7da735, type: 3}
-  damage: 1
-  speed: 0

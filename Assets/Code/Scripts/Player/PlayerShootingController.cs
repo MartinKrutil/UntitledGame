@@ -5,18 +5,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerShootingController : MonoBehaviour
 {
-    #region Properties
+    #region Fields
 
-    [SerializeField]
-    private Gun gun;
+    [SerializeField] private Gun gun;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource fireSFX;
 
-    [SerializeField]
-    private Transform firePoint;
+    private int currentAmmo;
+    private float shootTimer = 0f;
+    private bool canShoot;
 
-    [SerializeField]
-    private AudioSource fireSFX;
-
-    #endregion Properties
+    #endregion Fields
 
     #region Rotation
 
@@ -27,8 +27,7 @@ public class PlayerShootingController : MonoBehaviour
 
     #endregion Rotation
 
-    private void Start() { }
-
+    private void Start() => currentAmmo = gun.gunData.clipSize;
     private void Update()
     {
         FollowCursor();
@@ -59,20 +58,31 @@ public class PlayerShootingController : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        InstantiateBullet();
-        Recoil();
+        if (currentAmmo <= 0)
+        {
+            //emptyClipSFX.Play();
+            return;
+        }
+
+        if (Time.time < shootTimer) return;
+
+        shootTimer = Time.time + 1 / gun.gunData.fireRate;
+        
+        ShootBullet();
         fireSFX.Play();
+        animator.SetTrigger("Shoot");
+        currentAmmo--;
     }
 
-    private void InstantiateBullet()
+    private void ShootBullet()
     {
         GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 40f;
     }
-    private void Recoil()
+    private void Reload()
     {
-        //Transform transform = GetComponent<Transform>();
-        //transform.velocity = 
+        //animator.SetTrigger("Reload");
+        currentAmmo = gun.gunData.clipSize;
     }
 
     #endregion Methods
@@ -80,6 +90,7 @@ public class PlayerShootingController : MonoBehaviour
     #region Input
 
     private void OnFire() => Shoot();
+    private void OnReload() => Reload();
 
     #endregion Input
 }
