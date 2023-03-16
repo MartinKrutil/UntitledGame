@@ -55,13 +55,24 @@ public class PlayerShootingController : MonoBehaviour
     }
 
     /// <summary>
-    /// Shoots bullet from fire point by adding force to its rigidbody
+    /// Shoots bullet from fire point by changing velocity of its rigidbody
     /// </summary>
     private void Shoot()
     {
+        InstantiateBullet();
+        Recoil();
+        fireSFX.Play();
+    }
+
+    private void InstantiateBullet()
+    {
         GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 40f;
-        fireSFX.Play();
+    }
+    private void Recoil()
+    {
+        //Transform transform = GetComponent<Transform>();
+        //transform.velocity = 
     }
 
     #endregion Methods
