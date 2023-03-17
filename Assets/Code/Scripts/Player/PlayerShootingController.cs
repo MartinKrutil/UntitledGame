@@ -14,7 +14,6 @@ public class PlayerShootingController : MonoBehaviour
 
     private int currentAmmo;
     private float shootTimer = 0f;
-    private bool canShoot;
 
     #endregion Fields
 
