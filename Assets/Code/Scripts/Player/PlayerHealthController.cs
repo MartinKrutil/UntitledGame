@@ -20,7 +20,7 @@ public class PlayerHealthController : MonoBehaviour
 
     private void Start()
     {
-        this.health = this.maxHealth;
+        health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
     } 
 

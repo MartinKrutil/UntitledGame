@@ -10,12 +10,12 @@ public class EnemyHealthController : MonoBehaviour
     [SerializeField]
     private int health;
 
-    private void Start() => this.health = this.maxHealth;
+    private void Start() => health = maxHealth;
 
     public void TakeDamage(int damage)
     {
-        this.health -= damage;
-        if (this.health == 0)
+        health -= damage;
+        if (health == 0)
             Die();
     }
     private void Die() => Destroy(gameObject);
