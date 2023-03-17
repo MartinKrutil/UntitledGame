@@ -20,6 +20,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void Start()
     {
+        movementSpeed *= 100;
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }

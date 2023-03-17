@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pistol
   damage: 1
-  reloadSpeed: 0.25
+  reloadSpeed: 2
   fireRate: 5
   clipSize: 10
   gunType: 0

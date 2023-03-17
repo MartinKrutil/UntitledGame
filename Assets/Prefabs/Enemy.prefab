@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd087ccb08bd8047993cb395887886f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1500
+  movementSpeed: 15
   pathFinding: {fileID: 8863503136706112931}
 --- !u!114 &7091585307150903898
 MonoBehaviour:

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,9 @@ public class PlayerShootingController : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource fireSFX;
+    [SerializeField] private ScreenShake screenShaker;
 
+    private bool canShoot = true;
     private int currentAmmo;
     private float shootTimer = 0f;
 
@@ -27,16 +30,10 @@ public class PlayerShootingController : MonoBehaviour
     #endregion Rotation
 
     private void Start() => currentAmmo = gun.gunData.clipSize;
-    private void Update()
-    {
-        FollowCursor();
-    }
+    private void Update() => FollowCursor();
 
     #region Methods
 
-    /// <summary>
-    /// Rotates gun towards cursor position
-    /// </summary>
     private void FollowCursor()
     {
         mouseScreenPosition = Mouse.current.position.ReadValue(); //Position of cursor on screen
@@ -52,11 +49,10 @@ public class PlayerShootingController : MonoBehaviour
             transform.localRotation = Quaternion.Euler(new Vector3(180, 0, -rotationAngle));
     }
 
-    /// <summary>
-    /// Shoots bullet from fire point by changing velocity of its rigidbody
-    /// </summary>
     private void Shoot()
     {
+        if (!canShoot) return;
+
         if (currentAmmo <= 0)
         {
             //emptyClipSFX.Play();
@@ -70,6 +66,7 @@ public class PlayerShootingController : MonoBehaviour
         ShootBullet();
         fireSFX.Play();
         animator.SetTrigger("Shoot");
+        screenShaker.Shake();          
         currentAmmo--;
     }
 
@@ -78,10 +75,15 @@ public class PlayerShootingController : MonoBehaviour
         GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 40f;
     }
-    private void Reload()
+    private async void Reload()
     {
+        canShoot = false;
         //animator.SetTrigger("Reload");
+
+        await Task.Delay((int)(gun.gunData.reloadSpeed * 1000));
+
         currentAmmo = gun.gunData.clipSize;
+        canShoot = true;
     }
 
     #endregion Methods

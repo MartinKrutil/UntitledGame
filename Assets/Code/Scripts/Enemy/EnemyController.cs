@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private EnemyPathFindingController pathFinding;
 
+    private void Start() => movementSpeed *= 100;
+
     private void FixedUpdate()
     {
         pathFinding.CheckTarget();

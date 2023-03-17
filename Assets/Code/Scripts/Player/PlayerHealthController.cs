@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerHealthController : MonoBehaviour
@@ -13,7 +14,6 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField]
     private float invincibilityTime;
 
-    private float timer = 0;
     private bool canTakeDamage = true;
 
     private SpriteRenderer spriteRenderer;
@@ -34,25 +34,17 @@ public class PlayerHealthController : MonoBehaviour
         if (this.health == 0)
             Die();
 
-        InvokeRepeating("BecomeInvincible", 0f, 1f);
+        BecomeInvincible();
     }
-    private void BecomeInvincible()
+
+    private async void BecomeInvincible()
     {
-        if (canTakeDamage)
-        {
-            canTakeDamage = false;
-            spriteRenderer.color = Color.red;            
-        }      
+        canTakeDamage = false;
+        spriteRenderer.color = Color.red;
 
-        if (timer == invincibilityTime)
-        {
-            CancelInvoke("BecomeInvincible");
-            canTakeDamage = true;
-            timer = 0;
-            spriteRenderer.color = Color.white;
-            return;
-        }
+        await Task.Delay((int)(invincibilityTime * 1000));
 
-        timer++;
+        canTakeDamage = true;
+        spriteRenderer.color = Color.white;
     }
 }

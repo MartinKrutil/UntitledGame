@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7743763788171791090}
+  - component: {fileID: 1240466983951282301}
   - component: {fileID: 3141634145146270426}
   m_Layer: 0
   m_Name: PlayerCam
@@ -33,6 +34,21 @@ Transform:
   m_Father: {fileID: 1429072228065705062}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1240466983951282301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146106248813509566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6880c33fb6c78d74080e4716eee39fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.1
+  shakeMagnitude: 3
+  shakeFrequency: 10
 --- !u!114 &3141634145146270426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,7 +65,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 20
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1429072228065705062}
@@ -137,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f2734ce5cf3d244bd27e38f50c36b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1000
+  movementSpeed: 10
 --- !u!114 &6490608820468993543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +349,7 @@ MonoBehaviour:
   firePoint: {fileID: 6635604308267728721}
   animator: {fileID: 1652535957906457945}
   fireSFX: {fileID: 6714913129376942359}
+  screenShaker: {fileID: 1240466983951282301}
 --- !u!114 &7115808103812437305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +411,7 @@ GameObject:
   - component: {fileID: 1313011399450974422}
   - component: {fileID: 8228014606751514696}
   - component: {fileID: 3949071305795146634}
+  - component: {fileID: 758904725182608028}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -471,6 +489,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &758904725182608028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325036902497155245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: -976.21936, y: -436.41577, z: 927.553}
 --- !u!1001 &3316841119627959569
 PrefabInstance:
   m_ObjectHideFlags: 0

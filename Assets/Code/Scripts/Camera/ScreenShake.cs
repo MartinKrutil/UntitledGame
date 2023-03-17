@@ -1,41 +1,33 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
 {
-    public float shakeDuration = 0.5f;
-    public float shakeMagnitude = 0.1f;
+    [SerializeField] private float shakeDuration; //duration of the shake
+    [SerializeField] private float shakeMagnitude; //strength of the shake
+    [SerializeField] private float shakeFrequency; //speed of the shake
 
-    private Vector3 originalPosition;
+    private CinemachineVirtualCamera virtualCamera;    
+    private CinemachineBasicMultiChannelPerlin virtualCameraNoise; //component for simulating screen shake via perlin noise
 
-    void Start()
+    private void Start()
     {
-        originalPosition = transform.localPosition;
-    }
+        virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    } 
 
-    public void Shake()
+    public async void Shake()
     {
-        StartCoroutine(ShakeCoroutine());
-    }
+        virtualCameraNoise.m_AmplitudeGain = shakeMagnitude;
+        virtualCameraNoise.m_FrequencyGain = shakeFrequency;
 
-    IEnumerator ShakeCoroutine()
-    {
-        float elapsed = 0.0f;
+        await Task.Delay((int)(shakeDuration * 1000));
 
-        while (elapsed < shakeDuration)
-        {
-            float x = Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = Random.Range(-1f, 1f) * shakeMagnitude;
-
-            transform.localPosition = originalPosition + new Vector3(x, y, 0);
-
-            elapsed += Time.deltaTime;
-
-            yield return null;
-        }
-
-        transform.localPosition = originalPosition;
+        virtualCameraNoise.m_AmplitudeGain = 0f;
+        virtualCameraNoise.m_FrequencyGain = 0f;
     }
 }
 
