@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +9,15 @@ public class PlayerShootingController : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private Gun gun;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private Animator animator;
-    [SerializeField] private AudioSource fireSFX;
     [SerializeField] private ScreenShake screenShaker;
+    [SerializeField] private GameObject gun;
+    [SerializeField] private AudioClip clip;
 
+    private Gun gunScript;
+    private Animator animator;
+    private AudioSource fireSFX;
+    private Transform firePoint;   
+    
     private bool canShoot = true;
     private int currentAmmo;
     private float shootTimer = 0f;
@@ -29,10 +33,20 @@ public class PlayerShootingController : MonoBehaviour
 
     #endregion Rotation
 
-    private void Start() => currentAmmo = gun.gunData.clipSize;
+    private void Start() => InitializeGun();
+
     private void Update() => FollowCursor();
 
     #region Methods
+
+    private void InitializeGun()
+    {
+        gunScript = gun.GetComponent<Gun>();
+        animator = gun.GetComponent<Animator>();
+        fireSFX = gun.GetComponent<AudioSource>();
+        firePoint = gun.GetComponentInChildren<Transform>();
+        currentAmmo = gunScript.gunData.magazineSize;
+    }
 
     private void FollowCursor()
     {
@@ -53,18 +67,17 @@ public class PlayerShootingController : MonoBehaviour
     {
         if (!canShoot) return;
 
+        if (Time.time < shootTimer) return;
+        shootTimer = Time.time + 1 / gunScript.gunData.fireRate;
+
         if (currentAmmo <= 0)
         {
-            //emptyClipSFX.Play();
+            SoundManager.instance.PlaySound(gunScript.gunData.emptyMagazineSFX);
             return;
         }
 
-        if (Time.time < shootTimer) return;
-
-        shootTimer = Time.time + 1 / gun.gunData.fireRate;
-        
         ShootBullet();
-        fireSFX.Play();
+        SoundManager.instance.PlaySound(gunScript.gunData.fireSFX);
         animator.SetTrigger("Shoot");
         screenShaker.Shake();          
         currentAmmo--;
@@ -72,19 +85,22 @@ public class PlayerShootingController : MonoBehaviour
 
     private void ShootBullet()
     {
-        GameObject bullet = Instantiate(gun.gunData.bullet, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(gunScript.gunData.bullet, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 40f;
     }
     private async void Reload()
     {
         canShoot = false;
-        //animator.SetTrigger("Reload");
+        SoundManager.instance.PlaySound(gunScript.gunData.reloadSFX);
 
-        await Task.Delay((int)(gun.gunData.reloadSpeed * 1000));
+        await Task.Delay((int)(gunScript.gunData.reloadSpeed * 1000));
+        print("reloaded");
 
-        currentAmmo = gun.gunData.clipSize;
+        currentAmmo = gunScript.gunData.magazineSize;
         canShoot = true;
     }
+
+    
 
     #endregion Methods
 

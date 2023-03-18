@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146106248813509566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -0.0000019073486, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeDuration: 0.1
-  shakeMagnitude: 3
+  shakeMagnitude: 5
   shakeFrequency: 10
 --- !u!114 &3141634145146270426
 MonoBehaviour:
@@ -309,7 +309,6 @@ GameObject:
   - component: {fileID: 6853848469964090748}
   - component: {fileID: 1892313792206621453}
   - component: {fileID: 7115808103812437305}
-  - component: {fileID: 2093988424912316822}
   m_Layer: 0
   m_Name: GunHolder
   m_TagString: Untagged
@@ -345,11 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b416055a58cb44bbef89622878c65e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 3030373907660344026, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
-  firePoint: {fileID: 6635604308267728721}
-  animator: {fileID: 1652535957906457945}
-  fireSFX: {fileID: 6714913129376942359}
   screenShaker: {fileID: 1240466983951282301}
+  gun: {fileID: 6635604308267728722}
 --- !u!114 &7115808103812437305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,26 +376,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!95 &2093988424912316822
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8240910170309921160}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7ce28b0c84a521d48a4917682fe613b2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8325036902497155245
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,18 +543,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
---- !u!95 &1652535957906457945 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4100868165347989576, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
-  m_PrefabInstance: {fileID: 3316841119627959569}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6635604308267728721 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
   m_PrefabInstance: {fileID: 3316841119627959569}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &6714913129376942359 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8302351300885730310, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
+--- !u!1 &6635604308267728722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8219543874772410947, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
   m_PrefabInstance: {fileID: 3316841119627959569}
   m_PrefabAsset: {fileID: 0}
