@@ -480,6 +480,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 11400000, guid: c5342cd88592e8c42994278bd04189ae, type: 2}
+    - target: {fileID: 2035032064764732270, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2269055867537662426, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: showNavGraphs
       value: 1
@@ -535,6 +539,18 @@ PrefabInstance:
     - target: {fileID: 6635604308267728722, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: m_Name
       value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 6635604308267728722, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597119898356462704, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743763788171791090, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 8781808155679171482, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: firePoint

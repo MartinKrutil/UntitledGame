@@ -11,11 +11,9 @@ public class PlayerShootingController : MonoBehaviour
 
     [SerializeField] private ScreenShake screenShaker;
     [SerializeField] private GameObject gun;
-    [SerializeField] private AudioClip clip;
 
     private Gun gunScript;
     private Animator animator;
-    private AudioSource fireSFX;
     private Transform firePoint;   
     
     private bool canShoot = true;
@@ -43,8 +41,7 @@ public class PlayerShootingController : MonoBehaviour
     {
         gunScript = gun.GetComponent<Gun>();
         animator = gun.GetComponent<Animator>();
-        fireSFX = gun.GetComponent<AudioSource>();
-        firePoint = gun.GetComponentInChildren<Transform>();
+        firePoint = gunScript.firePoint;
         currentAmmo = gunScript.gunData.magazineSize;
     }
 
@@ -106,7 +103,11 @@ public class PlayerShootingController : MonoBehaviour
 
     #region Input
 
-    private void OnFire() => Shoot();
+    //private void OnFire() => Shoot();
+    private void OnFire()
+    {
+        var inputAction = new InputAction();
+    }
     private void OnReload() => Reload();
 
     #endregion Input
