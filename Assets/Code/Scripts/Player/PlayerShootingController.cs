@@ -10,14 +10,19 @@ public class PlayerShootingController : MonoBehaviour
     #region Fields
 
     [SerializeField] private ScreenShake screenShaker;
-    [SerializeField] private GameObject gun;
+
+#nullable enable
+    [SerializeField] private GameObject? gun;
+#nullable disable
+
+    private BoxCollider2D boxCollider;
 
     private Gun gunScript;
     private Animator animator;
     private Transform firePoint;
 
     private bool isReloading = false;
-    private int currentAmmo; 
+    private int currentAmmo;
     private float shootTimer = 0f;
     private float inputValue = 0f;
 
@@ -32,23 +37,19 @@ public class PlayerShootingController : MonoBehaviour
 
     #endregion Rotation
 
-    private void Start() => InitializeGun();
+    private void Start() => gun = null;
+    //private void Start() => InitializeGun();
 
     private void Update()
     {
-        FollowCursor();
-        if (inputValue > 0) Shoot();
+        if (gun != null)
+        {
+            FollowCursor();
+            if (inputValue > 0) Shoot();
+        }
     }
 
     #region Methods
-
-    private void InitializeGun()
-    {
-        gunScript = gun.GetComponent<Gun>();
-        animator = gun.GetComponent<Animator>();
-        firePoint = gunScript.firePoint;
-        currentAmmo = gunScript.gunData.magazineSize;
-    }
 
     private void FollowCursor()
     {
@@ -105,12 +106,61 @@ public class PlayerShootingController : MonoBehaviour
         isReloading = false;
     }
 
+    private void HandleItem()
+    {
+        // if (boxCollider.IsTouching())
+        // print("gadzu");
+    }
+
+    private void EquipGun()
+    {
+        //gun = 
+        ItemManager.instance.MoveItem(transform);
+
+        gunScript = gun.GetComponent<Gun>();
+        animator = gun.GetComponent<Animator>();
+        firePoint = gunScript.firePoint;
+        currentAmmo = gunScript.gunData.magazineSize;
+    }
+
+    private void DropGun()
+    {
+        Instantiate(gunScript.gunData.bullet, firePoint.position, firePoint.rotation);
+        Transform transform = gun.transform;
+        gun = null;
+    }
+
+    private void InitializeGun()
+    {
+        gunScript = gun.GetComponent<Gun>();
+        animator = gun.GetComponent<Animator>();
+        firePoint = gunScript.firePoint;
+        currentAmmo = gunScript.gunData.magazineSize;
+    }
+
     #endregion Methods
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.IsTouching(collider))
+        {
+            print("gadzu");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (boxCollider.IsTouching(collider))
+        {
+            print("gadzu");
+        }
+    }
 
     #region Input
 
     private void OnFire(InputValue value) => inputValue = value.Get<float>();
     private void OnReload() => Reload();
+    private void OnItemInteraction() => HandleItem();
 
     #endregion Input
 }
