@@ -20,4 +20,6 @@ public class GunData : ScriptableObject
     public AudioClip emptyMagazineSFX;
 
     public GameObject bullet;
+
+    public Vector3 equipPosition;
 }

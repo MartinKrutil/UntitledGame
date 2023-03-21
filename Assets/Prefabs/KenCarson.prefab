@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenShaker: {fileID: 1240466983951282301}
-  gun: {fileID: 7445261091350159063}
+  gun: {fileID: 0}
 --- !u!114 &7115808103812437305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,10 +546,5 @@ PrefabInstance:
 --- !u!4 &1297431617990871497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8419856425481037794, guid: 31db90a4b4a0b1e468a25a9929a824d1, type: 3}
-  m_PrefabInstance: {fileID: 7410728032264171051}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7445261091350159063 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 111130275782865148, guid: 31db90a4b4a0b1e468a25a9929a824d1, type: 3}
   m_PrefabInstance: {fileID: 7410728032264171051}
   m_PrefabAsset: {fileID: 0}

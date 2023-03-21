@@ -9,11 +9,11 @@ public class PlayerShootingController : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] private ScreenShake screenShaker;
-
-#nullable enable
+    #nullable enable
     [SerializeField] private GameObject? gun;
-#nullable disable
+    #nullable disable
+
+    [SerializeField] private ScreenShake screenShaker;
 
     private BoxCollider2D boxCollider;
 
@@ -108,26 +108,38 @@ public class PlayerShootingController : MonoBehaviour
 
     private void HandleItem()
     {
-        // if (boxCollider.IsTouching())
-        // print("gadzu");
+        if(gun != null) DropGun(gun);
+
+        foreach (GameObject item in GunManager.instance.guns)
+        {
+            if (item.GetComponent<Gun>().isEquipable)
+            {
+                EquipGun(item);
+                break;
+            }
+        }
     }
 
-    private void EquipGun()
+    private void EquipGun(GameObject gun)
     {
-        //gun = 
-        ItemManager.instance.MoveItem(transform);
+        gun.GetComponent<BoxCollider2D>().enabled = false;
 
+        GunManager.instance.MoveGunToHands(gun, transform);
+
+        this.gun = gun;      
         gunScript = gun.GetComponent<Gun>();
         animator = gun.GetComponent<Animator>();
         firePoint = gunScript.firePoint;
         currentAmmo = gunScript.gunData.magazineSize;
     }
 
-    private void DropGun()
+    private void DropGun(GameObject gun)
     {
-        Instantiate(gunScript.gunData.bullet, firePoint.position, firePoint.rotation);
-        Transform transform = gun.transform;
-        gun = null;
+        gun.GetComponent<BoxCollider2D>().enabled = true;
+
+        GunManager.instance.MoveGunToList(gun);
+
+        this.gun = null;
     }
 
     private void InitializeGun()

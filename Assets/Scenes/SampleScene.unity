@@ -123,32 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &305261214 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9193707825854027664, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
-  m_PrefabInstance: {fileID: 41528309792963363}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &305261220
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305261214}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 41528309495972700, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
@@ -302,7 +276,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 41528309495972771, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.741842
+      value: -6.7418413
       objectReference: {fileID: 0}
     - target: {fileID: 1603865518313598796, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: m_Name
@@ -315,6 +289,14 @@ PrefabInstance:
     - target: {fileID: 3624047060758510736, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: m_Name
       value: SceneLogic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943986582932385924, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943986582932385924, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.58
       objectReference: {fileID: 0}
     - target: {fileID: 4943986582932385927, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: m_TagString
@@ -451,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2608467867266848667, guid: 0d80c45d8793197408ace064ca626a99, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2608467867266848667, guid: 0d80c45d8793197408ace064ca626a99, type: 3}
       propertyPath: m_TagString
@@ -486,6 +468,14 @@ PrefabInstance:
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 840312733}
+    - target: {fileID: 1297431617990871497, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297431617990871497, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1420932891231989837, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -533,10 +523,6 @@ PrefabInstance:
     - target: {fileID: 1429072228065705062, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1892313792206621453, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
-      propertyPath: gun
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1892313792206621453, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: clip
@@ -628,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7743763788171791090, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000023841858
+      value: -0.0000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 8781808155679171482, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: firePoint

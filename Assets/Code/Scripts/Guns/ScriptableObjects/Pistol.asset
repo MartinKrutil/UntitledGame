@@ -18,8 +18,8 @@ MonoBehaviour:
   fireRate: 5
   magazineSize: 10
   gunType: 0
-  BulletType: 0
   fireSFX: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
   reloadSFX: {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
   emptyMagazineSFX: {fileID: 8300000, guid: e7632c6401c09437e83de45d33c5858e, type: 3}
   bullet: {fileID: 5678757416334655841, guid: 8b67c356203d251428db0576d82489e3, type: 3}
+  equipPosition: {x: 0.25, y: -0.5, z: 0}

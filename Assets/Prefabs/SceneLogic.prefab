@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41528309495972703}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.741842, y: -4.099437, z: -9.05323}
+  m_LocalPosition: {x: -6.7418413, y: -4.099437, z: -9.05323}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -505,8 +505,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4943986582932385924}
   - {fileID: 776055252972486798}
+  - {fileID: 4943986582932385924}
   m_Father: {fileID: 6536745644824284638}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -613,7 +613,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8219543874772410944, guid: 56fcaa77830e9ee4599975e4129fb86c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -677,9 +677,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: AssaultRifle
       objectReference: {fileID: 0}
+    - target: {fileID: 833183469208357250, guid: 31db90a4b4a0b1e468a25a9929a824d1, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 833183469208357250, guid: 31db90a4b4a0b1e468a25a9929a824d1, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 833183469208357250, guid: 31db90a4b4a0b1e468a25a9929a824d1, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8419856425481037794, guid: 31db90a4b4a0b1e468a25a9929a824d1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8419856425481037794, guid: 31db90a4b4a0b1e468a25a9929a824d1, type: 3}
       propertyPath: m_LocalPosition.x
