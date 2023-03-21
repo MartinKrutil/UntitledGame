@@ -14,7 +14,6 @@ public class GunData : ScriptableObject
     public int magazineSize;
 
     public GunType gunType;
-    public BulletType BulletType;
 
     public AudioClip fireSFX;
     public AudioClip reloadSFX;

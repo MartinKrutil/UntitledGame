@@ -14,11 +14,12 @@ public class PlayerShootingController : MonoBehaviour
 
     private Gun gunScript;
     private Animator animator;
-    private Transform firePoint;   
-    
-    private bool canShoot = true;
-    private int currentAmmo;
+    private Transform firePoint;
+
+    private bool isReloading = false;
+    private int currentAmmo; 
     private float shootTimer = 0f;
+    private float inputValue = 0f;
 
     #endregion Fields
 
@@ -33,7 +34,11 @@ public class PlayerShootingController : MonoBehaviour
 
     private void Start() => InitializeGun();
 
-    private void Update() => FollowCursor();
+    private void Update()
+    {
+        FollowCursor();
+        if (inputValue > 0) Shoot();
+    }
 
     #region Methods
 
@@ -62,7 +67,7 @@ public class PlayerShootingController : MonoBehaviour
 
     private void Shoot()
     {
-        if (!canShoot) return;
+        if (isReloading) return;
 
         if (Time.time < shootTimer) return;
         shootTimer = Time.time + 1 / gunScript.gunData.fireRate;
@@ -74,10 +79,13 @@ public class PlayerShootingController : MonoBehaviour
         }
 
         ShootBullet();
+        screenShaker.Shake();
         SoundManager.instance.PlaySound(gunScript.gunData.fireSFX);
         animator.SetTrigger("Shoot");
-        screenShaker.Shake();          
+
         currentAmmo--;
+
+        if (gunScript.gunData.gunType == GunType.SemiAutomatic) inputValue = 0;
     }
 
     private void ShootBullet()
@@ -85,29 +93,23 @@ public class PlayerShootingController : MonoBehaviour
         GameObject bullet = Instantiate(gunScript.gunData.bullet, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 40f;
     }
+
     private async void Reload()
     {
-        canShoot = false;
+        isReloading = true;
         SoundManager.instance.PlaySound(gunScript.gunData.reloadSFX);
 
         await Task.Delay((int)(gunScript.gunData.reloadSpeed * 1000));
-        print("reloaded");
 
         currentAmmo = gunScript.gunData.magazineSize;
-        canShoot = true;
+        isReloading = false;
     }
-
-    
 
     #endregion Methods
 
     #region Input
 
-    //private void OnFire() => Shoot();
-    private void OnFire()
-    {
-        var inputAction = new InputAction();
-    }
+    private void OnFire(InputValue value) => inputValue = value.Get<float>();
     private void OnReload() => Reload();
 
     #endregion Input

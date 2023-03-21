@@ -21,6 +21,9 @@ public class ScreenShake : MonoBehaviour
 
     public async void Shake()
     {
+        print("shake");
+        print(virtualCameraNoise.m_AmplitudeGain);
+        print(virtualCameraNoise.m_FrequencyGain);
         virtualCameraNoise.m_AmplitudeGain = shakeMagnitude;
         virtualCameraNoise.m_FrequencyGain = shakeFrequency;
 
@@ -28,6 +31,9 @@ public class ScreenShake : MonoBehaviour
 
         virtualCameraNoise.m_AmplitudeGain = 0f;
         virtualCameraNoise.m_FrequencyGain = 0f;
+        print(virtualCameraNoise.m_AmplitudeGain);
+        print(virtualCameraNoise.m_FrequencyGain);
+
     }
 }
 

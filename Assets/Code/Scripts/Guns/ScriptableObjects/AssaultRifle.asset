@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   name: Assault Rifle
-  damage: 1
+  damage: 0.125
   reloadSpeed: 0.35
   fireRate: 10
   magazineSize: 20

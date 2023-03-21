@@ -5,18 +5,13 @@ using UnityEngine;
 
 public class PlayerHealthController : MonoBehaviour
 {
-    [SerializeField]
-    private int maxHealth;
-
-    [SerializeField]
-    private int health;
-
-    [SerializeField]
-    private float invincibilityTime;
-
-    private bool canTakeDamage = true;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int health;
+    [SerializeField] private float invincibilityTime;
 
     private SpriteRenderer spriteRenderer;
+
+    private bool canTakeDamage = true;
 
     private void Start()
     {
@@ -25,6 +20,7 @@ public class PlayerHealthController : MonoBehaviour
     } 
 
     private void Die() => Destroy(gameObject);
+
     public void TakeDamage(int damage)
     {
         if (!canTakeDamage) return;
