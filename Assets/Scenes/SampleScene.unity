@@ -276,11 +276,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 41528309495972771, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.7418413
+      value: -6.741842
       objectReference: {fileID: 0}
     - target: {fileID: 1603865518313598796, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: m_Name
-      value: ItemManager
+      value: GunManager
       objectReference: {fileID: 0}
     - target: {fileID: 3616987174870846117, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: soundSource
@@ -614,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7743763788171791090, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000019073486
+      value: -0.0000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 8781808155679171482, guid: cf7a0413c7d6aa048aa1820050b7aad9, type: 3}
       propertyPath: firePoint

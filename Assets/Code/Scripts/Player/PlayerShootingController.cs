@@ -10,7 +10,7 @@ public class PlayerShootingController : MonoBehaviour
     #region Fields
 
     #nullable enable
-    [SerializeField] private GameObject? gun;
+    [SerializeField] private GameObject? gun = null;
     #nullable disable
 
     [SerializeField] private ScreenShake screenShaker;
@@ -36,9 +36,6 @@ public class PlayerShootingController : MonoBehaviour
     private float rotationAngle;
 
     #endregion Rotation
-
-    private void Start() => gun = null;
-    //private void Start() => InitializeGun();
 
     private void Update()
     {
@@ -124,7 +121,7 @@ public class PlayerShootingController : MonoBehaviour
     {
         gun.GetComponent<BoxCollider2D>().enabled = false;
 
-        GunManager.instance.MoveGunToHands(gun, transform);
+        GunManager.instance.MoveGunToHands(gun, transform, rotationAngle);
 
         this.gun = gun;      
         gunScript = gun.GetComponent<Gun>();
