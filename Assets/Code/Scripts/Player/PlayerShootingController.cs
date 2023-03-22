@@ -128,6 +128,8 @@ public class PlayerShootingController : MonoBehaviour
         animator = gun.GetComponent<Animator>();
         firePoint = gunScript.firePoint;
         currentAmmo = gunScript.gunData.magazineSize;
+
+        SoundManager.instance.PlaySound(gunScript.gunData.reloadSFX);
     }
 
     private void DropGun(GameObject gun)
