@@ -15,8 +15,6 @@ public class PlayerShootingController : MonoBehaviour
 
     [SerializeField] private ScreenShake screenShaker;
 
-    private BoxCollider2D boxCollider;
-
     private Gun gunScript;
     private Animator animator;
     private Transform firePoint;
@@ -38,7 +36,7 @@ public class PlayerShootingController : MonoBehaviour
 
     private void Update()
     {
-        if (gun != null)
+        if (this.gun != null)
         {
             FollowCursor();
             if (inputValue > 0) Shoot();
@@ -106,13 +104,13 @@ public class PlayerShootingController : MonoBehaviour
 
     private void HandleItem()
     {
-        if (gun != null) DropGun(gun);
+        if (this.gun != null) DropGun(this.gun);
 
-        foreach (GameObject item in GunManager.instance.guns)
+        foreach (GameObject gun in GunManager.instance.guns)
         {
-            if (item.GetComponent<Gun>().isEquipable)
+            if (gun.GetComponent<Gun>().isEquipable)
             {
-                EquipGun(item);
+                EquipGun(gun);
                 break;
             }
         }
