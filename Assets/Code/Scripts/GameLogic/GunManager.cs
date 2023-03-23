@@ -44,7 +44,7 @@ public class GunManager : MonoBehaviour
         }
     }
 
-    public void MoveGunToHands(GameObject gun, Transform parent, float rotationAngle)
+    public void MoveGunToHands(GameObject gun, Transform parent)
     {
         gun.transform.parent = parent;
         gun.transform.localPosition = gun.GetComponent<Gun>().gunData.equipPosition;

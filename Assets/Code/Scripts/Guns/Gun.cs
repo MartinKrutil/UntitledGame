@@ -7,13 +7,11 @@ public class Gun : MonoBehaviour
     public GunData gunData;
     public Transform firePoint;
 
-    public int ID;
+    public int currentAmmo;
     public bool isEquipable = false;
+    public bool wasUsed = false;
 
-    private void Start()
-    {
-        //ID = GunManager.instance.guns.IndexOf(gameObject);
-    }
+    private void Start() => currentAmmo = gunData.magazineSize;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -21,5 +21,8 @@ public class GunData : ScriptableObject
 
     public GameObject bullet;
 
+    public Sprite Sprite;
+    public Sprite hudSprite;
+
     public Vector3 equipPosition;
 }

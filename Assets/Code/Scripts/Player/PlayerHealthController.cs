@@ -9,6 +9,8 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] private int health;
     [SerializeField] private float invincibilityTime;
 
+    [SerializeField] private AudioClip damageSFX;
+
     private SpriteRenderer spriteRenderer;
 
     private bool canTakeDamage = true;
@@ -17,6 +19,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        HUDManager.instance.DisplayHearts(health);
     } 
 
     private void Die() => Destroy(gameObject);
@@ -27,9 +30,12 @@ public class PlayerHealthController : MonoBehaviour
 
         this.health -= damage;
 
+        HUDManager.instance.DisplayHearts(health);
+        SoundManager.instance.PlaySound(damageSFX);
+
         if (this.health == 0)
             Die();
-
+                   
         BecomeInvincible();
     }
 

@@ -10,7 +10,7 @@ public class PlayerShootingController : MonoBehaviour
     #region Fields
 
     #nullable enable
-    [SerializeField] private GameObject? gun = null;
+    private GameObject? gun = null;
     #nullable disable
 
     [SerializeField] private ScreenShake screenShaker;
@@ -22,7 +22,6 @@ public class PlayerShootingController : MonoBehaviour
     private Transform firePoint;
 
     private bool isReloading = false;
-    private int currentAmmo;
     private float shootTimer = 0f;
     private float inputValue = 0f;
 
@@ -70,19 +69,20 @@ public class PlayerShootingController : MonoBehaviour
         if (Time.time < shootTimer) return;
         shootTimer = Time.time + 1 / gunScript.gunData.fireRate;
 
-        if (currentAmmo <= 0)
+        if (gunScript.currentAmmo <= 0)
         {
             SoundManager.instance.PlaySound(gunScript.gunData.emptyMagazineSFX);
             return;
         }
 
         ShootBullet();
-        screenShaker.Shake();
-        SoundManager.instance.PlaySound(gunScript.gunData.fireSFX);
+        gunScript.currentAmmo--;
+
         animator.SetTrigger("Shoot");
-
-        currentAmmo--;
-
+        //screenShaker.Shake();
+        SoundManager.instance.PlaySound(gunScript.gunData.fireSFX);
+        HUDManager.instance.UpdateAmmo(gunScript);     
+       
         if (gunScript.gunData.gunType == GunType.SemiAutomatic) inputValue = 0;
     }
 
@@ -99,7 +99,8 @@ public class PlayerShootingController : MonoBehaviour
 
         await Task.Delay((int)(gunScript.gunData.reloadSpeed * 1000));
 
-        currentAmmo = gunScript.gunData.magazineSize;
+        gunScript.currentAmmo = gunScript.gunData.magazineSize;
+        HUDManager.instance.UpdateAmmo(gunScript);
         isReloading = false;
     }
 
@@ -119,53 +120,39 @@ public class PlayerShootingController : MonoBehaviour
 
     private void EquipGun(GameObject gun)
     {
+        SetGun(gun);
         gun.GetComponent<BoxCollider2D>().enabled = false;
 
-        GunManager.instance.MoveGunToHands(gun, transform, rotationAngle);
+        gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        //gun.GetComponent<Rigidbody2D>().Sleep();
 
-        this.gun = gun;      
-        gunScript = gun.GetComponent<Gun>();
-        animator = gun.GetComponent<Animator>();
-        firePoint = gunScript.firePoint;
-        currentAmmo = gunScript.gunData.magazineSize;
-
+        GunManager.instance.MoveGunToHands(gun, transform);
+        HUDManager.instance.SetGunDisplay(gunScript);      
         SoundManager.instance.PlaySound(gunScript.gunData.reloadSFX);
     }
 
     private void DropGun(GameObject gun)
     {
         gun.GetComponent<BoxCollider2D>().enabled = true;
+        //gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        //gun.GetComponent<Rigidbody2D>().AddForce(targetDirection.normalized * 20, ForceMode2D.Impulse);
+        //gun.GetComponent<Rigidbody2D>().AddTorque(45, ForceMode2D.Force);
 
         GunManager.instance.MoveGunToList(gun);
+        HUDManager.instance.DisableGunDisplay();
 
-        this.gun = null;
+        this.gun = null;              
     }
 
-    private void InitializeGun()
+    private void SetGun(GameObject gun)
     {
+        this.gun = gun;
         gunScript = gun.GetComponent<Gun>();
         animator = gun.GetComponent<Animator>();
         firePoint = gunScript.firePoint;
-        currentAmmo = gunScript.gunData.magazineSize;
     }
 
     #endregion Methods
-
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        if (collider.IsTouching(collider))
-        {
-            print("gadzu");
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (boxCollider.IsTouching(collider))
-        {
-            print("gadzu");
-        }
-    }
 
     #region Input
 

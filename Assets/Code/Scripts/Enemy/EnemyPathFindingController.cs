@@ -18,7 +18,6 @@ public class EnemyPathFindingController : MonoBehaviour
 
     void Start()
     {
-        //target = transform;
         seeker = GetComponent<Seeker>();
         rigidBody = GetComponent<Rigidbody2D>();
 

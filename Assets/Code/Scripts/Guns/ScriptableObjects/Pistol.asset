@@ -22,4 +22,6 @@ MonoBehaviour:
   reloadSFX: {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
   emptyMagazineSFX: {fileID: 8300000, guid: e7632c6401c09437e83de45d33c5858e, type: 3}
   bullet: {fileID: 5678757416334655841, guid: 8b67c356203d251428db0576d82489e3, type: 3}
-  equipPosition: {x: 1, y: -0.5, z: 0}
+  Sprite: {fileID: 21300000, guid: 90e2c55f021aff84083d956692d567b4, type: 3}
+  hudSprite: {fileID: 21300000, guid: 3b7520c7beda73d48a45dd9214f58463, type: 3}
+  equipPosition: {x: 0.5, y: -0.2, z: 0}
