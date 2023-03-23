@@ -5,14 +5,14 @@ using UnityEngine;
 public class EnemyHealthController : MonoBehaviour
 {
     [SerializeField]
-    private int maxHealth;
+    private float maxHealth;
 
     [SerializeField]
-    private int health;
+    private float health;
 
     private void Start() => health = maxHealth;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health == 0)
