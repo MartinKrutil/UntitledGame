@@ -182,7 +182,7 @@ MonoBehaviour:
   maxHealth: 5
   health: 0
   invincibilityTime: 3
-  damageSFX: {fileID: 8300000, guid: f82a36d354119a94ebe904587f02f98c, type: 3}
+  damageSFX: {fileID: 8300000, guid: 50835591ee0d4d14f939066782eb2c15, type: 3}
 --- !u!212 &6965126002818225461
 SpriteRenderer:
   m_ObjectHideFlags: 0

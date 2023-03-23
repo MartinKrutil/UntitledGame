@@ -9,9 +9,9 @@ public class PlayerShootingController : MonoBehaviour
 {
     #region Fields
 
-    #nullable enable
+#nullable enable
     private GameObject? gun = null;
-    #nullable disable
+#nullable disable
 
     [SerializeField] private ScreenShake screenShaker;
 
@@ -81,8 +81,8 @@ public class PlayerShootingController : MonoBehaviour
         animator.SetTrigger("Shoot");
         //screenShaker.Shake();
         SoundManager.instance.PlaySound(gunScript.gunData.fireSFX);
-        HUDManager.instance.UpdateAmmo(gunScript);     
-       
+        HUDManager.instance.UpdateAmmo(gunScript);
+
         if (gunScript.gunData.gunType == GunType.SemiAutomatic) inputValue = 0;
     }
 
@@ -106,7 +106,7 @@ public class PlayerShootingController : MonoBehaviour
 
     private void HandleItem()
     {
-        if(gun != null) DropGun(gun);
+        if (gun != null) DropGun(gun);
 
         foreach (GameObject item in GunManager.instance.guns)
         {
@@ -119,29 +119,28 @@ public class PlayerShootingController : MonoBehaviour
     }
 
     private void EquipGun(GameObject gun)
-    {
-        SetGun(gun);
+    {       
         gun.GetComponent<BoxCollider2D>().enabled = false;
-
         gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        //gun.GetComponent<Rigidbody2D>().Sleep();
+
+        SetGun(gun);
 
         GunManager.instance.MoveGunToHands(gun, transform);
-        HUDManager.instance.SetGunDisplay(gunScript);      
+        HUDManager.instance.SetGunDisplay(gunScript);
         SoundManager.instance.PlaySound(gunScript.gunData.reloadSFX);
     }
 
     private void DropGun(GameObject gun)
     {
         gun.GetComponent<BoxCollider2D>().enabled = true;
-        //gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        //gun.GetComponent<Rigidbody2D>().AddForce(targetDirection.normalized * 20, ForceMode2D.Impulse);
-        //gun.GetComponent<Rigidbody2D>().AddTorque(45, ForceMode2D.Force);
+        gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
+        ThrowGun(gun);
 
         GunManager.instance.MoveGunToList(gun);
         HUDManager.instance.DisableGunDisplay();
 
-        this.gun = null;              
+        this.gun = null;
     }
 
     private void SetGun(GameObject gun)
@@ -150,6 +149,15 @@ public class PlayerShootingController : MonoBehaviour
         gunScript = gun.GetComponent<Gun>();
         animator = gun.GetComponent<Animator>();
         firePoint = gunScript.firePoint;
+        gun.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
+    private void ThrowGun(GameObject gun)
+    {
+        Rigidbody2D rigidbody = gun.GetComponent<Rigidbody2D>();
+        float rotationVelocity = 360f * Random.Range(4f, 8f);
+        rigidbody.velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 50;
+        rigidbody.angularVelocity = rotationAngle < -90 || rotationAngle > 90 ? rotationVelocity : -rotationVelocity;
     }
 
     #endregion Methods

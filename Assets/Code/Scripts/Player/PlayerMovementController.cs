@@ -21,11 +21,11 @@ public class PlayerMovementController : MonoBehaviour
 
     #endregion Rotation
 
-    void Start()
+    private void Start()
     {
         movementSpeed *= 100;
         rigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();      
     }
 
     public void FollowCursor()
@@ -38,7 +38,7 @@ public class PlayerMovementController : MonoBehaviour
 
         spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false; //Flips sprite on x axis depending on which side the cursor is relative to the sprite      
     }
-    
+
     public void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed * Time.fixedDeltaTime;
 
     private void OnMove(InputValue value) => movementInput = value.Get<Vector2>();

@@ -498,6 +498,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8558296255997557836, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8635330027705538513, guid: e02e28e922437b44da0bc4bbd4b33e58, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -601,7 +605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2608467867266848667, guid: 0d80c45d8793197408ace064ca626a99, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2608467867266848667, guid: 0d80c45d8793197408ace064ca626a99, type: 3}
       propertyPath: m_TagString
