@@ -87,11 +87,14 @@ public class PlayerShootingController : MonoBehaviour
     private void ShootBullet()
     {
         GameObject bullet = Instantiate(gunScript.gunData.bullet, firePoint.position, firePoint.rotation);
+        bullet.GetComponent<Bullet>().SetDamage(gunScript.gunData.damage);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 40f;
     }
 
     private async void Reload()
     {
+        if(this.gun == null) return;
+
         isReloading = true;
         SoundManager.instance.PlaySound(gunScript.gunData.reloadSFX);
 

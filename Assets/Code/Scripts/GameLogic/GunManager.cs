@@ -19,28 +19,11 @@ public class GunManager : MonoBehaviour
         LoadGuns();
     }
 
-    private void Start()
-    {       
-    }
-
-    private void Update()
-    {
-
-    }
-
     private void LoadGuns()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
             guns.Add(transform.GetChild(i).gameObject);
-        }
-    }
-
-    private void PrintGuns(List<GameObject> guns)
-    {
-        foreach (var item in guns)
-        {
-            print(item.name);
         }
     }
 
