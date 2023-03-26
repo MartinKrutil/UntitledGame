@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   name: Assault Rifle
-  damage: 0.125
+  damage: 0.25
   reloadSpeed: 0.35
   fireRate: 10
   magazineSize: 20
   gunType: 1
+  shootingType: 1
+  rarity: 0
   fireSFX: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
   reloadSFX: {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
   emptyMagazineSFX: {fileID: 8300000, guid: e7632c6401c09437e83de45d33c5858e, type: 3}

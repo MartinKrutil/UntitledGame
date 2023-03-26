@@ -1,11 +1,19 @@
-public enum GunType
+using System;
+
+public enum ShootingType
 {
     SemiAutomatic,
     Automatic
 }
-public enum BulletType
+public enum GunType
 {
-    Small,
-    Big,
-    Slug
+    Pistol,
+    AssaultRifle
 }
+public enum Rarity
+{
+    Common,
+    Rare,
+    Epic
+}
+

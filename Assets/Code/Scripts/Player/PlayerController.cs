@@ -7,13 +7,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerHealthController healthController;
+    [SerializeField] private PlayerHealthController healthController;
+    [SerializeField] private PlayerMovementController movementController;
 
-    [SerializeField]
-    private PlayerMovementController movementController;
-
-    private void Start() { }
     private void Update() => movementController.FollowCursor();
+
     private void FixedUpdate() => movementController.Move();
 }

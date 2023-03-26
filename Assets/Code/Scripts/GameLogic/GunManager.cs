@@ -40,4 +40,10 @@ public class GunManager : MonoBehaviour
         gun.transform.localPosition = gun.transform.localPosition;
         guns.Add(gun);
     }
+
+    public void GenerateRandomGunData()
+    {
+        GunData gunData = new GunData();
+        gunData.GetRandomData();
+    }
 }

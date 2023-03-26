@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Bullet
   - Gun
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -14,11 +15,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Gun
+  - Wall
+  - Enemy
+  - Bullet
   - 
   - 
   - 
@@ -44,17 +45,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 2916153713
+  - name: Ground
+    uniqueID: 679042641
+    locked: 0
+  - name: GunOnGround
+    uniqueID: 1774127251
     locked: 0
   - name: Enemy
     uniqueID: 2479710423
     locked: 0
+  - name: Player
+    uniqueID: 2916153713
+    locked: 0
+  - name: Wall
+    uniqueID: 1576657743
+    locked: 0
+  - name: GunEquipped
+    uniqueID: 3543716139
+    locked: 0
   - name: Bullet
     uniqueID: 3709158289
-    locked: 0
-  - name: Gun
-    uniqueID: 3543716139
     locked: 0
   - name: UI
     uniqueID: 4066882183

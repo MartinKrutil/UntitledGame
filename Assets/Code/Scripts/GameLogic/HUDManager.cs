@@ -24,7 +24,10 @@ public class HUDManager : MonoBehaviour
         gunDisplay.SetAmmo(gun.currentAmmo, gun.gunData.magazineSize);
         gunDisplay.SetGunImage(gun.gunData.hudSprite);
     }
+
     public void DisableGunDisplay() => gunDisplay.Disable();
+
     public void UpdateAmmo(Gun gun) => gunDisplay.SetAmmo(gun.currentAmmo, gun.gunData.magazineSize);
+
     public void DisplayHearts(int heartCount) => heartDisplay.DisplayHearts(heartCount);
 }

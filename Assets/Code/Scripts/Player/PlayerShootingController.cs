@@ -81,7 +81,7 @@ public class PlayerShootingController : MonoBehaviour
         SoundManager.instance.PlaySound(gunScript.gunData.fireSFX);
         HUDManager.instance.UpdateAmmo(gunScript);
 
-        if (gunScript.gunData.gunType == GunType.SemiAutomatic) inputValue = 0;
+        if (gunScript.gunData.shootingType == ShootingType.SemiAutomatic) inputValue = 0;
     }
 
     private void ShootBullet()
@@ -122,7 +122,12 @@ public class PlayerShootingController : MonoBehaviour
     private void EquipGun(GameObject gun)
     {       
         gun.GetComponent<BoxCollider2D>().enabled = false;
+        gun.GetComponent<CapsuleCollider2D>().enabled = false;
         gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        gun.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gun.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+
+        gun.GetComponent<SpriteRenderer>().sortingLayerName = "GunEquipped";
 
         SetGun(gun);
 
@@ -132,9 +137,12 @@ public class PlayerShootingController : MonoBehaviour
     }
 
     private void DropGun(GameObject gun)
-    {
+    {       
         gun.GetComponent<BoxCollider2D>().enabled = true;
+        gun.GetComponent<CapsuleCollider2D>().enabled = true;
         gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
+        gun.GetComponent<SpriteRenderer>().sortingLayerName = "GunOnGround";
 
         ThrowGun(gun);
 
@@ -149,8 +157,7 @@ public class PlayerShootingController : MonoBehaviour
         this.gun = gun;
         gunScript = gun.GetComponent<Gun>();
         animator = gun.GetComponent<Animator>();
-        firePoint = gunScript.firePoint;
-        gun.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        firePoint = gunScript.firePoint;      
     }
 
     private void ThrowGun(GameObject gun)

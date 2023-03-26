@@ -23,6 +23,10 @@ public class Bullet : MonoBehaviour
             collision.collider.GetComponent<EnemyHealthController>().TakeDamage(this.damage);
             Explode();
         }
+        if (collision.collider.CompareTag("Wall"))
+        {
+            Explode();
+        }
     }
     
     private void Explode()

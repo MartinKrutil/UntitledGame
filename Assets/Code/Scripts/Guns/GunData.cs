@@ -4,7 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Gun Data", menuName = "Gun Data")]
 public class GunData : ScriptableObject
-{  
+{
+    #region Gun Data
     [Header("Gun Stats")]
     public new string name;
 
@@ -15,6 +16,8 @@ public class GunData : ScriptableObject
     public int magazineSize;
 
     public GunType gunType;
+    public ShootingType shootingType;
+    public Rarity rarity;
 
     [Header("Audio")]
     public AudioClip fireSFX;
@@ -30,4 +33,10 @@ public class GunData : ScriptableObject
 
     [Header("Equip position")]
     public Vector3 equipPosition;
+    #endregion Gun Data
+
+    public void GetRandomData()
+    {
+        this.name = $"{Random.Range(0,1)}";
+    }
 }

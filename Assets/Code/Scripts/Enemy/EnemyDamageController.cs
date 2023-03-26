@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyDamageController : MonoBehaviour
 {
-    [SerializeField]
-    private int damage;
+    [SerializeField] private int damage;
 
     void OnCollisionEnter2D(Collision2D collision)
     {

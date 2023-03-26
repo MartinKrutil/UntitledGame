@@ -33,7 +33,7 @@ public class PlayerHealthController : MonoBehaviour
         HUDManager.instance.DisplayHearts(health);
         SoundManager.instance.PlaySound(damageSFX);
 
-        if (this.health == 0)
+        if (this.health <= 0)
             Die();
                    
         BecomeInvincible();

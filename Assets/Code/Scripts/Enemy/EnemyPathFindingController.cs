@@ -5,11 +5,9 @@ using Pathfinding;
 
 public class EnemyPathFindingController : MonoBehaviour
 {
-    [SerializeField]
-    private Transform target;
+    [SerializeField] private Transform target;
 
     private Rigidbody2D rigidBody;
-
     private Path path; 
     private Seeker seeker;
     
