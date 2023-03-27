@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private GameObject collisionEffect;
+    [SerializeField] public GameObject collisionEffect;
 
     [SerializeField] private float lifeTime;
 

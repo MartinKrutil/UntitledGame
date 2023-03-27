@@ -7,10 +7,13 @@ public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
 
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody;
 
     private Vector2 movementInput;
+
+    private bool isMoving = false;
 
     #region Rotation
 
@@ -25,7 +28,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         movementSpeed *= 100;
         rigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();      
+        spriteRenderer = GetComponent<SpriteRenderer>();  
+        animator = GetComponent<Animator>();
     }
 
     public void FollowCursor()
@@ -37,6 +41,12 @@ public class PlayerMovementController : MonoBehaviour
         rotationAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg; //Angle of rotation required to point object towards the mouse position in degrees
 
         spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false; //Flips sprite on x axis depending on which side the cursor is relative to the sprite      
+    }
+
+    public void HandleAnimation()
+    {
+        isMoving = movementInput != Vector2.zero ? true : false;
+        animator.SetBool("isMoving", isMoving);
     }
 
     public void Move() => rigidBody.velocity = movementInput.normalized * movementSpeed * Time.fixedDeltaTime;

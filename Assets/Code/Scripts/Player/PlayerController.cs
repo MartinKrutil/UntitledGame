@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerHealthController healthController;
     [SerializeField] private PlayerMovementController movementController;
 
-    private void Update() => movementController.FollowCursor();
+    private void Update()
+    {
+        movementController.FollowCursor();
+        movementController.HandleAnimation();
+    } 
 
     private void FixedUpdate() => movementController.Move();
 }

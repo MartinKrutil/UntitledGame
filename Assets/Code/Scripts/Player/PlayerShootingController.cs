@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerShootingController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerShootingController : MonoBehaviour
 #nullable disable
 
     [SerializeField] private ScreenShake screenShaker;
+    [SerializeField] private GameObject bulletTrail;
+    [SerializeField] private LayerMask layerMasks;
 
     private Gun gunScript;
     private Animator animator;
@@ -45,6 +48,8 @@ public class PlayerShootingController : MonoBehaviour
 
     #region Methods
 
+    #region Movement
+
     private void FollowCursor()
     {
         mouseScreenPosition = Mouse.current.position.ReadValue(); //Position of cursor on screen
@@ -60,6 +65,10 @@ public class PlayerShootingController : MonoBehaviour
             transform.localRotation = Quaternion.Euler(new Vector3(180, 0, -rotationAngle));
     }
 
+    #endregion Movement
+
+    #region Shooting
+
     private void Shoot()
     {
         if (isReloading) return;
@@ -73,18 +82,31 @@ public class PlayerShootingController : MonoBehaviour
             return;
         }
 
-        ShootBullet();
+        ShootByRaycast();
         gunScript.currentAmmo--;
 
-        animator.SetTrigger("Shoot");
         //screenShaker.Shake();
+        animator.SetTrigger("Shoot");        
         SoundManager.instance.PlaySound(gunScript.gunData.fireSFX);
         HUDManager.instance.UpdateAmmo(gunScript);
 
         if (gunScript.gunData.shootingType == ShootingType.SemiAutomatic) inputValue = 0;
     }
 
-    private void ShootBullet()
+    private void ShootByRaycast()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, targetDirection.normalized, 1000f, layerMasks);
+        //Debug.DrawLine(firePoint.position, hit.point, Color.red); 
+
+        if (hit)
+        {
+            GameObject trail = Instantiate(bulletTrail, firePoint.position, firePoint.rotation);
+            if (trail.TryGetComponent<BulletTrail>(out BulletTrail bulletTrailScript))
+                bulletTrailScript.ShootBullet(hit, gunScript.gunData.damage);
+        }          
+    }
+
+    private void ShootBulletPrefab()
     {
         GameObject bullet = Instantiate(gunScript.gunData.bullet, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Bullet>().SetDamage(gunScript.gunData.damage);
@@ -104,6 +126,10 @@ public class PlayerShootingController : MonoBehaviour
         HUDManager.instance.UpdateAmmo(gunScript);
         isReloading = false;
     }
+
+    #endregion Shooting
+
+    #region Gun Handling
 
     private void HandleItem()
     {
@@ -167,6 +193,8 @@ public class PlayerShootingController : MonoBehaviour
         rigidbody.velocity = new Vector2(targetDirection.x, targetDirection.y).normalized * 50;
         rigidbody.angularVelocity = rotationAngle < -90 || rotationAngle > 90 ? rotationVelocity : -rotationVelocity;
     }
+
+    #endregion Gun Handling
 
     #endregion Methods
 

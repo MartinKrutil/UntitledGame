@@ -1,3 +1,0 @@
-# UntitledGame
-Maturita project
-

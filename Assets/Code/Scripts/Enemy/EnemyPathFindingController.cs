@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Unity.VisualScripting;
 
 public class EnemyPathFindingController : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    #nullable enable
+    [SerializeField] private Transform? target;
+    #nullable disable
 
+    private Animator animator;
     private Rigidbody2D rigidBody;
     private Path path; 
     private Seeker seeker;
     
     private int currentWaypoint = 0;
     private float nextWaypointDistance = 3f;
+    private bool isMoving = false;
 
     void Start()
     {
-        seeker = GetComponent<Seeker>();
+        animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-
+        seeker = GetComponent<Seeker>();
+       
         InvokeRepeating("GeneratePath", 0f, 0.25f); //Calls the GeneratePath method on start and then every 0.25 seconds
     }
 
@@ -64,5 +70,11 @@ public class EnemyPathFindingController : MonoBehaviour
 
         else if (force.x < 0f && rigidBody.velocity.x < 0f)
             transform.localScale = new Vector3(-1f, 1f, 1f);
+    }
+
+    public void HandleAnimation()
+    {
+        isMoving = Vector2.Distance(rigidBody.velocity, new Vector2(0, 0)) > 0.5  ? true : false;
+        animator.SetBool("isMoving", isMoving);
     }
 }

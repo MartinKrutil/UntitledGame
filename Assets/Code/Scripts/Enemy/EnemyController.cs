@@ -11,9 +11,11 @@ public class EnemyController : MonoBehaviour
 
     private void Start() => movementSpeed *= 100;
 
-    private void FixedUpdate()
+    private void Update()
     {
         pathFinding.CheckTarget();
-        pathFinding.FollowPath(movementSpeed);       
-    }  
+        pathFinding.HandleAnimation();
+    }
+
+    private void FixedUpdate() => pathFinding.FollowPath(movementSpeed);   
 }
