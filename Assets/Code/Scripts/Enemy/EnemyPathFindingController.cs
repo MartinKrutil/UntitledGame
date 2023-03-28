@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 public class EnemyPathFindingController : MonoBehaviour
 {
-#nullable enable
+    #nullable enable
     [SerializeField] private Transform? target;
-#nullable disable
-
+    #nullable disable
     [SerializeField] private LayerMask layerMask;
-
     [SerializeField] private float agroTime;
 
     private Animator animator;
@@ -24,6 +22,7 @@ public class EnemyPathFindingController : MonoBehaviour
     private float nextWaypointDistance = 3f;
     private bool canSeeTarget = false;
     private bool isChasingTarget = false;
+    private bool isLosingAgro = false;
     private bool isMoving = false;
 
     void Start()
@@ -45,29 +44,37 @@ public class EnemyPathFindingController : MonoBehaviour
     }
 
     private async void LoseAgro(float agroTime)
-    {
+    {       
+        isLosingAgro = true;
         await Task.Delay((int)(agroTime * 1000));
+        if (this == null) return;
         isChasingTarget = false;
+        CancelInvoke("GeneratePath");
+        this.path = null;
+        isLosingAgro = false;
     }
 
     public void CheckTarget()
-    {
-        if (target == null) return;
+    {   
+        if (target == null)
+        {
+            CancelInvoke("GeneratePath"); 
+            return;
+        }
+            
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, target.position - transform.position, 18f, layerMask);
 
-
         canSeeTarget = hit.collider != null && hit.collider.CompareTag(target.tag) ? true : false;
-        //if (hit.collider != null && hit.collider.CompareTag(target.tag))
-            //canSeeTarget = true;
 
         if (!canSeeTarget)
         {
             if (isChasingTarget)
             {
-                CancelInvoke("GeneratePath");
-                LoseAgro(agroTime);
-                path = null;          
+                if(!isLosingAgro)
+                {
+                    LoseAgro(agroTime);
+                }                           
             }         
         }
 
@@ -80,13 +87,8 @@ public class EnemyPathFindingController : MonoBehaviour
             }
         }
             
-     
-        if (hit.collider != null && hit.collider.CompareTag(target.tag))
-        {
-            Debug.DrawLine(transform.position, hit.point, Color.green);
-        }
-        else
-            Debug.DrawLine(transform.position, hit.point, Color.red);
+        Color color = canSeeTarget ? Color.green : Color.red;
+        Debug.DrawLine(transform.position, hit.point, color);    
     }
 
     public void FollowPath(float movementSpeed)

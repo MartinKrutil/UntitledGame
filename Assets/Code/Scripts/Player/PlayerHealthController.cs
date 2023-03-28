@@ -34,8 +34,11 @@ public class PlayerHealthController : MonoBehaviour
         SoundManager.instance.PlaySound(damageSFX);
 
         if (this.health <= 0)
+        {
             Die();
-                   
+            return;
+        }
+                              
         BecomeInvincible();
     }
 

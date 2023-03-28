@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngineInternal;
 
 public class BulletTrail : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class BulletTrail : MonoBehaviour
 
     public async void ShootBullet(RaycastHit2D hit, float damage)
     {
+        if(hit.collider == null) return;
+
         endPosition = hit.point;
 
         while (distance < 1)
@@ -24,7 +27,7 @@ public class BulletTrail : MonoBehaviour
             await Task.Yield();
         }
 
-        if (hit.collider.TryGetComponent<EnemyHealthController>(out EnemyHealthController enemyHealthController))
+        if (hit.collider != null && hit.collider.TryGetComponent<EnemyHealthController>(out EnemyHealthController enemyHealthController))
             enemyHealthController.TakeDamage(damage);
 
         Destroy(gameObject);

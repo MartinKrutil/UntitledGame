@@ -17,5 +17,10 @@ public class EnemyHealthController : MonoBehaviour
             Die();
     }
 
-    private void Die() => Destroy(gameObject);
+    private void Die()
+    {      
+        Destroy(gameObject);
+        EnemyManager.instance.enemies.Remove(gameObject);
+        //EnemyManager.instance.Update();
+    } 
 }

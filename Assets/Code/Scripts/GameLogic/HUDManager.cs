@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HUDManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class HUDManager : MonoBehaviour
 
     [SerializeField] private GunDisplay gunDisplay;
     [SerializeField] private HeartDisplay heartDisplay;
+    [SerializeField] private TextMeshProUGUI winText;
 
     private void Awake()
     {
@@ -30,4 +32,6 @@ public class HUDManager : MonoBehaviour
     public void UpdateAmmo(Gun gun) => gunDisplay.SetAmmo(gun.currentAmmo, gun.gunData.magazineSize);
 
     public void DisplayHearts(int heartCount) => heartDisplay.DisplayHearts(heartCount);
+
+    public void EnableWinText() => winText.enabled = true;
 }

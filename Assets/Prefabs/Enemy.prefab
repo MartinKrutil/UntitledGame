@@ -79,10 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284c995b81ec02844a479c3fe4b333a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2608467867266848662}
+  target: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 320
+  agroTime: 5
 --- !u!114 &3514069021825724649
 MonoBehaviour:
   m_ObjectHideFlags: 0
