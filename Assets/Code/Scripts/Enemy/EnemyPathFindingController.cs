@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using Unity.VisualScripting;
+using System.Threading.Tasks;
 
 public class EnemyPathFindingController : MonoBehaviour
 {
-    #nullable enable
+#nullable enable
     [SerializeField] private Transform? target;
-    #nullable disable
+#nullable disable
+
+    [SerializeField] private LayerMask layerMask;
+
+    [SerializeField] private float agroTime;
 
     private Animator animator;
     private Rigidbody2D rigidBody;
-    private Path path; 
+    private Path path;
     private Seeker seeker;
-    
+
     private int currentWaypoint = 0;
     private float nextWaypointDistance = 3f;
+    private bool canSeeTarget = false;
+    private bool isChasingTarget = false;
     private bool isMoving = false;
 
     void Start()
@@ -24,8 +31,6 @@ public class EnemyPathFindingController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
-       
-        InvokeRepeating("GeneratePath", 0f, 0.25f); //Calls the GeneratePath method on start and then every 0.25 seconds
     }
 
     private void GeneratePath() => seeker.StartPath(rigidBody.position, target.position, OnPathGenerated);
@@ -39,15 +44,56 @@ public class EnemyPathFindingController : MonoBehaviour
         }
     }
 
+    private async void LoseAgro(float agroTime)
+    {
+        await Task.Delay((int)(agroTime * 1000));
+        isChasingTarget = false;
+    }
+
     public void CheckTarget()
     {
-        if (target == null)
-            CancelInvoke("GeneratePath");
+        if (target == null) return;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, target.position - transform.position, 18f, layerMask);
+
+
+        canSeeTarget = hit.collider != null && hit.collider.CompareTag(target.tag) ? true : false;
+        //if (hit.collider != null && hit.collider.CompareTag(target.tag))
+            //canSeeTarget = true;
+
+        if (!canSeeTarget)
+        {
+            if (isChasingTarget)
+            {
+                CancelInvoke("GeneratePath");
+                LoseAgro(agroTime);
+                path = null;          
+            }         
+        }
+
+        if (canSeeTarget)
+        {
+            if (!isChasingTarget)
+            {
+                InvokeRepeating("GeneratePath", 0f, 0.25f); //Calls the GeneratePath method on start and then every 0.25 seconds
+                isChasingTarget = true;
+            }
+        }
+            
+     
+        if (hit.collider != null && hit.collider.CompareTag(target.tag))
+        {
+            Debug.DrawLine(transform.position, hit.point, Color.green);
+        }
+        else
+            Debug.DrawLine(transform.position, hit.point, Color.red);
     }
 
     public void FollowPath(float movementSpeed)
     {
         if (path == null) return;
+
+        if (!isChasingTarget) return;
 
         else if (currentWaypoint >= path.vectorPath.Count) return; //if current waypoint is greater than or equal to total amount of waypoint along the path
 

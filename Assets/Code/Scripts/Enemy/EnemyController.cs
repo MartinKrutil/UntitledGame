@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 
 public class EnemyController : MonoBehaviour
-{  
+{
     [SerializeField] private EnemyPathFindingController pathFinding;
 
     [SerializeField] private float movementSpeed = 1000f;
@@ -17,5 +17,8 @@ public class EnemyController : MonoBehaviour
         pathFinding.HandleAnimation();
     }
 
-    private void FixedUpdate() => pathFinding.FollowPath(movementSpeed);   
+    private void FixedUpdate()
+    {
+        pathFinding.FollowPath(movementSpeed);
+    }
 }
