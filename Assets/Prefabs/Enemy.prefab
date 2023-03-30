@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2608467867266848662}
-  - component: {fileID: 3767768317414271054}
   - component: {fileID: 7091585307150903898}
   - component: {fileID: 8863503136706112931}
   - component: {fileID: 3514069021825724649}
@@ -40,20 +39,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3767768317414271054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2608467867266848667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bd087ccb08bd8047993cb395887886f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathFinding: {fileID: 8863503136706112931}
-  movementSpeed: 15
 --- !u!114 &7091585307150903898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,10 +65,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  movementSpeed: 15
+  agroTime: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  agroTime: 5
 --- !u!114 &3514069021825724649
 MonoBehaviour:
   m_ObjectHideFlags: 0

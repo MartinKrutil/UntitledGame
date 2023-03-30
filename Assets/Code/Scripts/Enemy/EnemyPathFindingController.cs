@@ -9,9 +9,10 @@ public class EnemyPathFindingController : MonoBehaviour
 {
     #nullable enable
     [SerializeField] private Transform? target;
-    #nullable disable
-    [SerializeField] private LayerMask layerMask;
+#   nullable disable
+    [SerializeField] private float movementSpeed = 1000f;
     [SerializeField] private float agroTime;
+    [SerializeField] private LayerMask layerMask; 
 
     private Animator animator;
     private Rigidbody2D rigidBody;
@@ -27,10 +28,19 @@ public class EnemyPathFindingController : MonoBehaviour
 
     void Start()
     {
+        movementSpeed *= 100;
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
     }
+
+    private void Update()
+    {
+        CheckTarget();
+        HandleAnimation();
+    }
+
+    private void FixedUpdate() => FollowPath(movementSpeed);
 
     private void GeneratePath() => seeker.StartPath(rigidBody.position, target.position, OnPathGenerated);
 

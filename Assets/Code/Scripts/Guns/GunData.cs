@@ -6,12 +6,11 @@ using UnityEngine;
 public class GunData : ScriptableObject
 {
     #region Gun Data
+
     [Header("Gun Stats")]
     public new string name;
 
-    public float damage;
-    public float reloadSpeed;
-    public float fireRate;
+    public float damage, reloadSpeed, fireRate;
 
     public int magazineSize;
 
@@ -20,19 +19,17 @@ public class GunData : ScriptableObject
     public Rarity rarity;
 
     [Header("Audio")]
-    public AudioClip fireSFX;
-    public AudioClip reloadSFX;
-    public AudioClip emptyMagazineSFX;
+    public AudioClip fireSFX, reloadSFX, emptyMagazineSFX;
 
     [Header("Bullet")]
     public GameObject bullet;
 
     [Header("Images")]
-    public Sprite Sprite;
-    public Sprite hudSprite;
+    public Sprite Sprite, hudSprite;
 
     [Header("Equip position")]
     public Vector3 equipPosition;
+
     #endregion Gun Data
 
     public void GetRandomData()

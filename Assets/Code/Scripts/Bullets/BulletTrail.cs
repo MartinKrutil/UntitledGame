@@ -12,7 +12,7 @@ public class BulletTrail : MonoBehaviour
     private float distance = 0;
     private float speed = 10f;
 
-    private void Awake() => startPosition = transform.position;
+    private void Start() => startPosition = transform.position;
 
     public async void ShootBullet(RaycastHit2D hit, float damage)
     {
