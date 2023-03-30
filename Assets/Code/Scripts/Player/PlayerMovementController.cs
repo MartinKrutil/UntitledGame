@@ -32,15 +32,23 @@ public class PlayerMovementController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        FollowCursor();
+        HandleAnimation();
+    }
+
+    private void FixedUpdate() => Move();
+
     public void FollowCursor()
     {
-        mouseScreenPosition = Mouse.current.position.ReadValue(); //Position of cursor on screen
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition); //Converts mouse cursor screen position to world (game) position
-        targetDirection = mouseWorldPosition - transform.position; //Direction from current object position to the mouse world position
+        mouseScreenPosition = Mouse.current.position.ReadValue();
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition); 
+        targetDirection = mouseWorldPosition - transform.position; 
 
-        rotationAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg; //Angle of rotation required to point object towards the mouse position in degrees
+        rotationAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg; 
 
-        spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false; //Flips sprite on x axis depending on which side the cursor is relative to the sprite      
+        spriteRenderer.flipX = rotationAngle < -90 || rotationAngle > 90 ? true : false;    
     }
 
     public void HandleAnimation()

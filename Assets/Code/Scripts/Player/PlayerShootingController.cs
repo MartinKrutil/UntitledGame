@@ -14,7 +14,7 @@ public class PlayerShootingController : MonoBehaviour
     private GameObject? gun = null;
 #nullable disable
 
-    [SerializeField] private ScreenShake screenShaker;
+    //[SerializeField] private ScreenShake screenShaker;
     [SerializeField] private GameObject bulletTrail;
     [SerializeField] private LayerMask layerMasks;
 
@@ -52,15 +52,14 @@ public class PlayerShootingController : MonoBehaviour
 
     private void FollowCursor()
     {
-        mouseScreenPosition = Mouse.current.position.ReadValue(); //Position of cursor on screen
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition); //Converts mouse cursor screen position to world (game) position
-        targetDirection = mouseWorldPosition - transform.position; //Direction from current object position to the mouse world position
+        mouseScreenPosition = Mouse.current.position.ReadValue();
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition); 
+        targetDirection = mouseWorldPosition - transform.position; 
 
-        rotationAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg; //Angle of rotation required to point object towards the mouse position in degrees
+        rotationAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg; 
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationAngle)); //Rotates object on z axis towards the cursor
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationAngle)); 
 
-        //Rotates the object by 180 degrees depending on which side the cursor is relative to the object
         if (rotationAngle < -90 || rotationAngle > 90)
             transform.localRotation = Quaternion.Euler(new Vector3(180, 0, -rotationAngle));
     }
@@ -68,7 +67,6 @@ public class PlayerShootingController : MonoBehaviour
     #endregion Movement
 
     #region Shooting
-
     private void Shoot()
     {
         if (isReloading) return;
@@ -96,6 +94,7 @@ public class PlayerShootingController : MonoBehaviour
     private void ShootByRaycast()
     {
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, targetDirection.normalized, 1000f, layerMasks);
+
         //Debug.DrawLine(firePoint.position, hit.point, Color.red); 
 
         if (hit)
@@ -131,7 +130,7 @@ public class PlayerShootingController : MonoBehaviour
 
     #region Gun Handling
 
-    private void HandleItem()
+    private void HandleGun()
     {
         if (this.gun != null) DropGun(this.gun);
 
@@ -146,15 +145,7 @@ public class PlayerShootingController : MonoBehaviour
     }
 
     private void EquipGun(GameObject gun)
-    {       
-        gun.GetComponent<BoxCollider2D>().enabled = false;
-        gun.GetComponent<CapsuleCollider2D>().enabled = false;
-        gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        gun.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        gun.GetComponent<Rigidbody2D>().angularVelocity = 0f;
-
-        gun.GetComponent<SpriteRenderer>().sortingLayerName = "GunEquipped";
-
+    {             
         SetGun(gun);
 
         GunManager.instance.MoveGunToHands(gun, transform);
@@ -162,28 +153,28 @@ public class PlayerShootingController : MonoBehaviour
         SoundManager.instance.PlaySound(gunScript.gunData.reloadSFX);
     }
 
-    private void DropGun(GameObject gun)
-    {       
-        gun.GetComponent<BoxCollider2D>().enabled = true;
-        gun.GetComponent<CapsuleCollider2D>().enabled = true;
-        gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-
-        gun.GetComponent<SpriteRenderer>().sortingLayerName = "GunOnGround";
-
-        ThrowGun(gun);
-
-        GunManager.instance.MoveGunToList(gun);
-        HUDManager.instance.DisableGunDisplay();
-
-        this.gun = null;
-    }
-
     private void SetGun(GameObject gun)
     {
+        gun.GetComponent<BoxCollider2D>().enabled = false;
+        gun.GetComponent<CapsuleCollider2D>().enabled = false;
+        gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        gun.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gun.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+        gun.GetComponent<SpriteRenderer>().sortingLayerName = "GunEquipped";
+
         this.gun = gun;
         gunScript = gun.GetComponent<Gun>();
         animator = gun.GetComponent<Animator>();
-        firePoint = gunScript.firePoint;      
+        firePoint = gunScript.firePoint;
+    }
+
+    private void DropGun(GameObject gun)
+    {
+        UnsetGun(gun);
+        ThrowGun(gun);
+
+        GunManager.instance.MoveGunToList(gun);
+        HUDManager.instance.DisableGunDisplay();       
     }
 
     private void ThrowGun(GameObject gun)
@@ -194,6 +185,16 @@ public class PlayerShootingController : MonoBehaviour
         rigidbody.angularVelocity = rotationAngle < -90 || rotationAngle > 90 ? rotationVelocity : -rotationVelocity;
     }
 
+    private void UnsetGun(GameObject gun)
+    {
+        gun.GetComponent<BoxCollider2D>().enabled = true;
+        gun.GetComponent<CapsuleCollider2D>().enabled = true;
+        gun.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        gun.GetComponent<SpriteRenderer>().sortingLayerName = "GunOnGround";
+
+        this.gun = null;
+    }
+
     #endregion Gun Handling
 
     #endregion Methods
@@ -202,7 +203,7 @@ public class PlayerShootingController : MonoBehaviour
 
     private void OnFire(InputValue value) => inputValue = value.Get<float>();
     private void OnReload() => Reload();
-    private void OnItemInteraction() => HandleItem();
+    private void OnItemInteraction() => HandleGun();
 
     #endregion Input
 }
