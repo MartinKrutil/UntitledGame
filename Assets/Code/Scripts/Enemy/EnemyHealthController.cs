@@ -21,6 +21,5 @@ public class EnemyHealthController : MonoBehaviour
     {      
         Destroy(gameObject);
         EnemyManager.instance.enemies.Remove(gameObject);
-        //EnemyManager.instance.Update();
     } 
 }

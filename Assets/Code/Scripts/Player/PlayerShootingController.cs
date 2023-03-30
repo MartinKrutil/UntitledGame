@@ -10,9 +10,9 @@ public class PlayerShootingController : MonoBehaviour
 {
     #region Fields
 
-#nullable enable
+#   nullable enable
     private GameObject? gun = null;
-#nullable disable
+#   nullable disable
 
     //[SerializeField] private ScreenShake screenShaker;
     [SerializeField] private GameObject bulletTrail;
@@ -95,7 +95,7 @@ public class PlayerShootingController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, targetDirection.normalized, 1000f, layerMasks);
 
-        //Debug.DrawLine(firePoint.position, hit.point, Color.red); 
+        Debug.DrawLine(firePoint.position, hit.point, Color.red); 
 
         if (hit)
         {

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 public class EnemyPathFindingController : MonoBehaviour
 {
-    #nullable enable
+#   nullable enable
     [SerializeField] private Transform? target;
 #   nullable disable
+
     [SerializeField] private float movementSpeed = 1000f;
     [SerializeField] private float agroTime;
     [SerializeField] private LayerMask layerMask; 
@@ -53,68 +54,57 @@ public class EnemyPathFindingController : MonoBehaviour
         }
     }
 
-    private async void LoseAgro(float agroTime)
-    {       
-        isLosingAgro = true;
-        await Task.Delay((int)(agroTime * 1000));
-        if (this == null) return;
-        isChasingTarget = false;
-        CancelInvoke("GeneratePath");
-        this.path = null;
-        isLosingAgro = false;
-    }
-
-    public void CheckTarget()
+    private void CheckTarget()
     {   
         if (target == null)
         {
             CancelInvoke("GeneratePath"); 
             return;
-        }
-            
+        }    
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, target.position - transform.position, 18f, layerMask);
 
         canSeeTarget = hit.collider != null && hit.collider.CompareTag(target.tag) ? true : false;
 
-        if (!canSeeTarget)
-        {
-            if (isChasingTarget)
-            {
-                if(!isLosingAgro)
-                {
-                    LoseAgro(agroTime);
-                }                           
-            }         
-        }
+        if (!canSeeTarget && isChasingTarget && !isLosingAgro)
+            LoseAggro(agroTime);
 
-        if (canSeeTarget)
+        if (canSeeTarget && !isChasingTarget)
         {
-            if (!isChasingTarget)
-            {
-                InvokeRepeating("GeneratePath", 0f, 0.25f); //Calls the GeneratePath method on start and then every 0.25 seconds
-                isChasingTarget = true;
-            }
-        }
-            
-        Color color = canSeeTarget ? Color.green : Color.red;
-        Debug.DrawLine(transform.position, hit.point, color);    
+            InvokeRepeating("GeneratePath", 0f, 0.25f);
+            isChasingTarget = true;
+        }             
+    }
+    private async void LoseAggro(float agroTime)
+    {
+        isLosingAgro = true;
+
+        await Task.Delay((int)(agroTime * 1000));
+
+        if (this == null) return;
+
+        CancelInvoke("GeneratePath");
+
+        this.path = null;
+
+        isChasingTarget = false;
+        isLosingAgro = false;
     }
 
-    public void FollowPath(float movementSpeed)
+    private void FollowPath(float movementSpeed)
     {
         if (path == null) return;
 
         if (!isChasingTarget) return;
 
-        else if (currentWaypoint >= path.vectorPath.Count) return; //if current waypoint is greater than or equal to total amount of waypoint along the path
+        else if (currentWaypoint >= path.vectorPath.Count) return; 
 
-        Vector2 nextWaypointDirection = ((Vector2)path.vectorPath[currentWaypoint] - rigidBody.position).normalized; //normalized vector2 direction from current position to next waypoint
+        Vector2 nextWaypointDirection = ((Vector2)path.vectorPath[currentWaypoint] - rigidBody.position).normalized; 
         Vector2 force = nextWaypointDirection * movementSpeed * Time.fixedDeltaTime;
 
         rigidBody.AddForce(force);
 
-        float currentDistance = Vector2.Distance(rigidBody.position, path.vectorPath[currentWaypoint]); //vector2 distance between current position and next waypoint
+        float currentDistance = Vector2.Distance(rigidBody.position, path.vectorPath[currentWaypoint]);
 
         if (currentDistance < nextWaypointDistance) currentWaypoint++;
 
@@ -130,7 +120,7 @@ public class EnemyPathFindingController : MonoBehaviour
             transform.localScale = new Vector3(-1f, 1f, 1f);
     }
 
-    public void HandleAnimation()
+    private void HandleAnimation()
     {
         isMoving = Vector2.Distance(rigidBody.velocity, new Vector2(0, 0)) > 0.5  ? true : false;
         animator.SetBool("isMoving", isMoving);
